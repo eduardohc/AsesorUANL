@@ -6,10 +6,9 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Base.AppTheme">
+        android:theme="@style/Base.AppTheme.NoActionBar">
         <activity
-            android:name=".OverviewActivity"
-            android:theme="@style/Base.AppTheme.NoActionBar">
+            android:name=".OverviewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -17,6 +16,12 @@
         </activity>
 
         <activity android:name=".MainActivity"/>
+
+        <activity android:name=".Register"/>
+
+        <activity android:name=".Login"/>
+
+        <activity android:name=".Signup"/>
     </application>
 
 </manifest>

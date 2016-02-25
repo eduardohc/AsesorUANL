@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/OverviewLayout">
+
+    <include layout="@layout/toolbar"/>
+
+    <EditText
+        style="@style/GeneralEditText.First"
+        android:layout_height="50dp"
+        android:inputType="textEmailAddress"
+        android:hint="Correo electrónico"
+        android:id="@+id/et_login_email" />
+
+    <EditText
+        style="@style/GeneralEditText"
+        android:inputType="textPassword"
+        android:hint="Contraseña"
+        android:fontFamily="Sans-serif"
+        android:id="@+id/et_login_password" />
+
+    <Button
+        style="@style/GeneralButton"
+        android:text="@string/login"
+        android:id="@+id/btn_login_login" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:text="Olvidaste tu contraseña?"
+        android:textStyle="bold"
+        android:textColor="#088A08"
+        android:id="@+id/textView"
+        android:layout_gravity="center" />
+
+</LinearLayout>

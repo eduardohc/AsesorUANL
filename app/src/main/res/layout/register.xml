@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/OverviewLayout">
+
+    <include layout="@layout/toolbar"/>
+
+    <ImageView
+        style="@style/OverviewAppIcon"
+        android:background="#D6D6D6"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        style="@style/GeneralButton"
+        android:text="@string/login"
+        android:id="@+id/btn_register_login"
+        android:onClick="onClick"/>
+
+    <Button
+        style="@style/GeneralButton"
+        android:text="@string/signup"
+        android:id="@+id/btn_register_signup"
+        android:onClick="onClick"/>
+
+</LinearLayout>

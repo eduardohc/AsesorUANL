@@ -7,4 +7,14 @@
     android:background="@color/appColor"
     app:theme="@style/Base.AppTheme"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" />
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:id="@+id/toolbar_title"/>
+
+</android.support.v7.widget.Toolbar>

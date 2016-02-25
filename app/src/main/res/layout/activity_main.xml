@@ -1,24 +1,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/OverviewLayout"
-    android:background="@color/white"
     tools:context=".MainActivity">
 
     <include layout="@layout/toolbar"/>
 
     <ImageView
         style="@style/OverviewAppIcon"
-        android:background="#000000"
+        android:background="#D6D6D6"
         android:layout_marginBottom="20dp"/>
 
     <Button
         style="@style/GeneralButton"
         android:text="@string/buscar_asesor"
-        android:id="@+id/btn_buscar_asesporia"/>
+        android:onClick="onClick"
+        android:id="@+id/btn_buscar_asesoria"/>
 
     <Button
         style="@style/GeneralButton"
-        android:text="@string/registr_asesor"
+        android:text="@string/asesor_register"
+        android:onClick="onClick"
         android:id="@+id/btn_registrar_asesor"/>
 
 

@@ -1,47 +1,47 @@
 package com.example.ehernandez.asesoruanl;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+/**
+ * Created by ehernandez on 25/02/2016.
+ */
+public class Register extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.register);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView tv_toolbar = (TextView) toolbar.findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        tv_toolbar.setText("" + getResources().getString(R.string.app_name));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        tv_toolbar.setText("" + getResources().getString(R.string.register));
+
     }
 
+    @Override
     public void onClick(View v) {
+
         Intent intent;
 
         switch (v.getId()){
-            case R.id.btn_buscar_asesoria:
-                Toast.makeText(getApplicationContext(), "Buscando asesoria",
-                        Toast.LENGTH_LONG).show();
+            case R.id.btn_register_login:
+                intent = new Intent(this, Login.class);
+                startActivity(intent);
                 break;
-            case R.id.btn_registrar_asesor:
-                intent = new Intent(this, Register.class);
+            case R.id.btn_register_signup:
+                intent = new Intent(this, Signup.class);
                 startActivity(intent);
                 break;
         }
-    }
-
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     @Override
@@ -52,10 +52,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == android.R.id.home) {
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
-    }*/
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+
+    }
+
 }
