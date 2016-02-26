@@ -14,13 +14,13 @@
         style="@style/GeneralButton"
         android:text="@string/buscar_asesor"
         android:onClick="onClick"
-        android:id="@+id/btn_buscar_asesoria"/>
+        android:id="@+id/btn_search_asesory"/>
 
     <Button
         style="@style/GeneralButton"
         android:text="@string/asesor_register"
         android:onClick="onClick"
-        android:id="@+id/btn_registrar_asesor"/>
+        android:id="@+id/btn_asesor_register"/>
 
 
 </LinearLayout>

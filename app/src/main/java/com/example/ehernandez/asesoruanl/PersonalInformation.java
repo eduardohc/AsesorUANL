@@ -1,37 +1,40 @@
 package com.example.ehernandez.asesoruanl;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
- * Created by ehernandez on 25/02/2016.
+ * Created by ehernandez on 26/02/2016.
  */
-public class Signup extends AppCompatActivity implements View.OnClickListener{
+public class PersonalInformation extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signup);
+        setContentView(R.layout.personal_information);
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView tv_toolbar = (TextView) toolbar.findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        tv_toolbar.setText("" + getResources().getString(R.string.signup));
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        tv_toolbar.setText("" + getResources().getString(R.string.personalInfo));
     }
 
-    @Override
-    public void onClick(View v) {
-        if(v.getId() == R.id.btn_signup_register){
-            Intent intent = new Intent(this, PersonalInformation.class);
-            startActivity(intent);
-        }
+
+
+     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_advance, menu);
+        return true;
     }
 
     @Override
@@ -42,12 +45,11 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == android.R.id.home) {
-            finish();
+        if (id == R.id.action_advance) {
+
+            Toast.makeText(getApplicationContext(), "Click on advance", Toast.LENGTH_LONG).show();
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }

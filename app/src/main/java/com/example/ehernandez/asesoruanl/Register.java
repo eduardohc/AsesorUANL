@@ -53,6 +53,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
         //noinspection SimplifiableIfStatement
         if (id == android.R.id.home) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
             finish();
         }
 

@@ -6,13 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by ehernandez on 25/02/2016.
  */
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,5 +50,12 @@ public class Login extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.btn_login_login){
+            Toast.makeText(getApplication(), "Iniciando sesión...", Toast.LENGTH_LONG).show();
+        }
     }
 }

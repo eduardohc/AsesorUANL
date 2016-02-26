@@ -2,11 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ehernandez.asesoruanl" >
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
+        android:name=".ParseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Base.AppTheme.NoActionBar">
+
+
+
         <activity
             android:name=".OverviewActivity">
             <intent-filter>
@@ -22,6 +29,10 @@
         <activity android:name=".Login"/>
 
         <activity android:name=".Signup"/>
+
+        <activity android:name=".PersonalInformation"/>
+
+        <activity android:name=".AddAsesory"/>
     </application>
 
 </manifest>

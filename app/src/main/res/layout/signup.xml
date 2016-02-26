@@ -4,4 +4,23 @@
 
     <include layout="@layout/toolbar"/>
 
+    <EditText
+        style="@style/GeneralEditText.First"
+        android:layout_height="50dp"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email"
+        android:id="@+id/et_signup_email" />
+
+    <EditText
+        style="@style/GeneralEditText"
+        android:inputType="textPassword"
+        android:hint="@string/password"
+        android:fontFamily="Sans-serif"
+        android:id="@+id/et_signup_password" />
+
+    <Button
+        style="@style/GeneralButton"
+        android:text="@string/register"
+        android:id="@+id/btn_signup_register" />
+
 </LinearLayout>

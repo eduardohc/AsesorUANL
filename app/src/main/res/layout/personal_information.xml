@@ -6,25 +6,16 @@
 
     <EditText
         style="@style/GeneralEditText.First"
+        android:layout_height="50dp"
         android:inputType="textEmailAddress"
-        android:hint="@string/email"
-        android:id="@+id/et_login_email" />
+        android:hint="@string/name"
+        android:id="@+id/et_info_name" />
 
     <EditText
         style="@style/GeneralEditText"
         android:inputType="textPassword"
-        android:hint="@string/password"
+        android:hint="@string/department"
         android:fontFamily="Sans-serif"
-        android:id="@+id/et_login_password" />
-
-    <Button
-        style="@style/GeneralButton"
-        android:text="@string/login"
-        android:id="@+id/btn_login_login" />
-
-    <TextView
-        style="@style/LoginTextView"
-        android:text="@string/password_forgotten"
-        android:id="@+id/textView" />
+        android:id="@+id/et_info_department" />
 
 </LinearLayout>

@@ -1,12 +1,25 @@
 <resources>
     <string name="app_name">Asesor UANL</string>
 
+    <string name="parse_app_id">4LADG3ddIdsDEX4wwxDZo4mfHfB6eIujedTE1RWP</string>
+    <string name="parse_client_key">1vGZgESLbzmj20VQ9KveA32wx8xUXPweKd7F6XHx</string>
+    
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_advance">Advance</string>
 
     <string name="buscar_asesor">Buscar asesoría</string>
     <string name="asesor_register">Registrarse como asesor</string>
     <string name="register">Registrarse</string>
     <string name="login">Iniciar sesión</string>
     <string name="signup">Registro</string>
+
+    <string name="email">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="password_forgotten">Olvidaste tu contraseña?</string>
+    <string name="personalInfo">Datos personales</string>
+    <string name="addAsesory">Agregar asesoría</string>
+
+    <string name="name">Nombre completo</string>
+    <string name="department">Coordinación</string>
 </resources>
