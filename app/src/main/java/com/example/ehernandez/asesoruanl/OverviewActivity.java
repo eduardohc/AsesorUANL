@@ -44,6 +44,4 @@ public class OverviewActivity extends AppCompatActivity{
         super.onBackPressed();
         System.exit(1);
     }
-
-
 }

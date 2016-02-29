@@ -7,8 +7,8 @@
     <EditText
         style="@style/GeneralEditText.First"
         android:inputType="textEmailAddress"
-        android:hint="@string/email"
-        android:id="@+id/et_login_email" />
+        android:hint="@string/username"
+        android:id="@+id/et_login_username" />
 
     <EditText
         style="@style/GeneralEditText"
@@ -16,6 +16,11 @@
         android:hint="@string/password"
         android:fontFamily="Sans-serif"
         android:id="@+id/et_login_password" />
+
+    <TextView
+        style="@style/MessageError"
+        android:text="Llena todas las formas"
+        android:id="@+id/tv_login_error"/>
 
     <Button
         style="@style/GeneralButton"

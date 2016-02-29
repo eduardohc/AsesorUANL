@@ -18,7 +18,7 @@
 
     <Button
         style="@style/GeneralButton"
-        android:text="@string/asesor_register"
+        android:text="@string/addAsesory"
         android:onClick="onClick"
         android:id="@+id/btn_asesor_register"/>
 

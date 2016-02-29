@@ -6,7 +6,8 @@
         android:id="@+id/action_advance"
         android:title="@string/action_advance"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_check_white"
+        android:icon="@drawable/ic_done_white"
+        android:visible="false"
         app:showAsAction="always"/>
 
 </menu>

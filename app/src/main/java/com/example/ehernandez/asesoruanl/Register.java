@@ -40,6 +40,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             case R.id.btn_register_signup:
                 intent = new Intent(this, Signup.class);
                 startActivity(intent);
+                finish();
                 break;
         }
     }

@@ -55,10 +55,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //Send user to mainActivity
                 Intent intent = new Intent(this, AddAsesory.class);
                 startActivity(intent);
-                finish();
+                //finish();
             } else{
                 // Send to RegisterUser
-                Intent intent = new Intent(this, Register.class);git
+                Intent intent = new Intent(this, Register.class);
                 startActivity(intent);
                 finish();
             }

@@ -1,6 +1,8 @@
 package com.example.ehernandez.asesoruanl;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -8,13 +10,21 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 /**
  * Created by ehernandez on 25/02/2016.
  */
 public class Login extends AppCompatActivity implements View.OnClickListener{
+
+    EditText et_username, et_password;
+    TextView tv_message;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +37,59 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         tv_toolbar.setText("" + getResources().getString(R.string.login));
+
+        et_username = (EditText) findViewById(R.id.et_login_username);
+        et_password = (EditText) findViewById(R.id.et_login_password);
+        tv_message = (TextView) findViewById(R.id.tv_login_error);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.btn_login_login){
+            Login();
+            //Toast.makeText(getApplication(), "Iniciando sesión...", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void Login(){
+        String username, password;
+        username = et_username.getText().toString();
+        password = et_password.getText().toString();
+
+        if(username.equals("") || password.equals("")){
+            tv_message.setVisibility(View.VISIBLE);
+            tv_message.setText("Llena todas las formas");
+        } else{
+            ParseUser.logInInBackground(username, password, new LogInCallback() {
+                //@Override
+                public void done(ParseUser user, ParseException e) {
+                    if (user != null) {
+                        progressDialog = ProgressDialog.show(Login.this,
+                                "Please wait..", "Logging in user...", true);
+                        new Thread(new Runnable() {
+                            //@Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(10000);
+                                } catch (Exception exception) {
+
+                                }
+                                progressDialog.dismiss();
+
+                            }
+                        }).start();
+
+                        //If everything was succesfull, open mainactivity
+                        Intent intent = new Intent(Login.this, AddAsesory.class);
+                        startActivity(intent);
+                    } else {
+                        tv_message.setVisibility(View.VISIBLE);
+                        tv_message.setText("Error al intentar inicio de sesión. Prueba de nuevo");
+                    }
+                }
+            });
+        }
+
     }
 
     @Override
@@ -53,9 +116,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     }
 
     @Override
-    public void onClick(View v) {
-        if(v.getId() == R.id.btn_login_login){
-            Toast.makeText(getApplication(), "Iniciando sesión...", Toast.LENGTH_LONG).show();
+    public void onDestroy() {
+        super.onDestroy();
+        // Destroy the progressDialog when the activity exit
+        if(progressDialog != null){
+            if(progressDialog.isShowing()){
+                progressDialog.cancel();
+            }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+
     }
 }

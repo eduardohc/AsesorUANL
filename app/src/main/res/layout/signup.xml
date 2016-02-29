@@ -8,8 +8,8 @@
         style="@style/GeneralEditText.First"
         android:layout_height="50dp"
         android:inputType="textEmailAddress"
-        android:hint="@string/email"
-        android:id="@+id/et_signup_email" />
+        android:hint="@string/username"
+        android:id="@+id/et_signup_username" />
 
     <EditText
         style="@style/GeneralEditText"
@@ -17,6 +17,18 @@
         android:hint="@string/password"
         android:fontFamily="Sans-serif"
         android:id="@+id/et_signup_password" />
+
+    <EditText
+        style="@style/GeneralEditText"
+        android:inputType="textPassword"
+        android:hint="@string/conf_password"
+        android:fontFamily="Sans-serif"
+        android:id="@+id/et_signup_confpassword" />
+
+    <TextView
+        style="@style/MessageError"
+        android:text="Password incorrect"
+        android:id="@+id/tv_signup_message"/>
 
     <Button
         style="@style/GeneralButton"
