@@ -4,6 +4,12 @@
 
     <include layout="@layout/toolbar"/>
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:textSize="20sp"
+        android:id="@+id/tv_test"
+        android:gravity="center" />
 
 </LinearLayout>

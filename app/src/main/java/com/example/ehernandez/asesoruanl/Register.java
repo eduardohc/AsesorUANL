@@ -36,6 +36,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             case R.id.btn_register_login:
                 intent = new Intent(this, Login.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.btn_register_signup:
                 intent = new Intent(this, Signup.class);
@@ -54,8 +55,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
         //noinspection SimplifiableIfStatement
         if (id == android.R.id.home) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+            //Intent intent = new Intent(this, MainActivity.class);
+            //startActivity(intent);
             finish();
         }
 

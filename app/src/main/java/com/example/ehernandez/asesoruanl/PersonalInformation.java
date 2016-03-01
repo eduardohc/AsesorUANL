@@ -164,8 +164,9 @@ public class PersonalInformation extends AppCompatActivity {
 
     public void CallAddAsesoryActivity(){
         Intent intent = new Intent(PersonalInformation.this, AddAsesory.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        finish();
     }
 
     @Override

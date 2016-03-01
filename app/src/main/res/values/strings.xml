@@ -13,6 +13,9 @@
     <string name="register">Registrarse</string>
     <string name="login">Iniciar sesión</string>
     <string name="signup">Registro</string>
+    <string name="personalInfo">Datos personales</string>
+    <string name="addAsesory">Agregar asesoría</string>
+    <string name="searchAsesory">Buscar asesoría</string>
 
     <string name="username">Usuario</string>
     <string name="email">Correo electrónico</string>
@@ -21,8 +24,6 @@
     <string name="password_different">Contraseña diferente. Vuelva a intentar.</string>
     <string name="password_forgotten">Olvidaste tu contraseña?</string>
     <string name="fill_formas">Alguno de los campos esta vacio.</string>
-    <string name="personalInfo">Datos personales</string>
-    <string name="addAsesory">Agregar asesoría</string>
 
     <string name="name">Nombre completo</string>
     <string name="department">Coordinación</string>

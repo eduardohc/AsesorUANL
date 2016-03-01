@@ -12,8 +12,6 @@
         android:label="@string/app_name"
         android:theme="@style/Base.AppTheme.NoActionBar">
 
-
-
         <activity
             android:name=".OverviewActivity">
             <intent-filter>
@@ -33,6 +31,8 @@
         <activity android:name=".PersonalInformation"/>
 
         <activity android:name=".AddAsesory"/>
+
+        <activity android:name=".SearchAsesory"/>
     </application>
 
 </manifest>

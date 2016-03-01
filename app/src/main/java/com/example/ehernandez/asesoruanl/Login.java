@@ -82,6 +82,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                         //If everything was succesfull, open mainactivity
                         Intent intent = new Intent(Login.this, AddAsesory.class);
                         startActivity(intent);
+                        finish();
                     } else {
                         tv_message.setVisibility(View.VISIBLE);
                         tv_message.setText("Error al intentar inicio de sesión. Prueba de nuevo");
@@ -109,6 +110,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
         //noinspection SimplifiableIfStatement
         if (id == android.R.id.home) {
+            Intent intent = new Intent(Login.this, Register.class);
+            startActivity(intent);
             finish();
         }
 

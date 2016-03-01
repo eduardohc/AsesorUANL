@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()){
             case R.id.btn_search_asesory:
-                Toast.makeText(getApplicationContext(), "Buscando asesoria",
-                        Toast.LENGTH_LONG).show();
+                intent = new Intent(this, SearchAsesory.class);
+                startActivity(intent);
                 break;
             case R.id.btn_asesor_register:
                 AuthenticateUser();
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //If user is anonymus, send to register himself
             Intent intent = new Intent(this, Register.class);
             startActivity(intent);
-            finish();
+            //finish();
         } else{
             //If current user is not and anonymous user, get current user data from Parse.com
             ParseUser currentUser = ParseUser.getCurrentUser();
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // Send to RegisterUser
                 Intent intent = new Intent(this, Register.class);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         }
     }

@@ -7,14 +7,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.Parse;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 /**
  * Created by ehernandez on 26/02/2016.
  */
 public class AddAsesory extends AppCompatActivity {
+
+    private TextView tv_test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,9 @@ public class AddAsesory extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         tv_toolbar.setText("" + getResources().getString(R.string.addAsesory));
+
+        tv_test = (TextView) findViewById(R.id.tv_test);
+
     }
 
     @Override
@@ -49,13 +56,17 @@ public class AddAsesory extends AppCompatActivity {
         }
 
         if (id == R.id.addAsesory) {
-            return true;
+            ParseUser user = ParseUser.getCurrentUser();//.getParseUser("Name");
+            String name = "" + user.get("Name");
+            tv_test.setText(name);
+            //Toast.makeText(getApplicationContext(), "" + name, Toast.LENGTH_SHORT).show();
+            //return true;
         }
 
         if(id == R.id.logout){
             ParseUser.logOut();
-            //Intent intent = new Intent(AddAsesory.this, Register.class);
-            //startActivity(intent);
+            Intent intent = new Intent(AddAsesory.this, Register.class);
+            startActivity(intent);
             finish();
         }
 
