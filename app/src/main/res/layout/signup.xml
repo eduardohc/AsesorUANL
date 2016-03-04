@@ -4,10 +4,39 @@
 
     <include layout="@layout/toolbar"/>
 
-    <EditText
-        style="@style/GeneralEditText.First"
+    <RadioGroup
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:weightSum="1">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:layout_marginRight="10dp"
+            android:padding="5dp"
+            android:checked="true"
+            android:text="Asesor"
+            android:onClick="onCheckboxClicked"
+            android:id="@+id/chb_asesor" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:padding="5dp"
+            android:text="Alumno"
+            android:onClick="onCheckboxClicked"
+            android:id="@+id/chb_alumno" />
+
+    </RadioGroup>
+
+<EditText
+        style="@style/GeneralEditText"
         android:layout_height="50dp"
-        android:inputType="textEmailAddress"
+        android:inputType="numberDecimal"
         android:hint="@string/username"
         android:id="@+id/et_signup_username" />
 

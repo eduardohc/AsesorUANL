@@ -28,11 +28,13 @@
 
         <activity android:name=".Signup"/>
 
-        <activity android:name=".PersonalInformation"/>
+        <activity android:name=".PersonalInformationAsesor"/>
 
         <activity android:name=".AddAsesory"/>
 
         <activity android:name=".SearchAsesory"/>
+
+        <activity android:name=".PersonalInformationStudent"/>
     </application>
 
 </manifest>

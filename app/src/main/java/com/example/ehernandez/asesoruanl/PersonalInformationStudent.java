@@ -14,24 +14,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 /**
- * Created by ehernandez on 26/02/2016.
+ * Created by ehernandez on 04/03/2016.
  */
-public class PersonalInformation extends AppCompatActivity {
+public class PersonalInformationStudent extends AppCompatActivity{
 
-    EditText et_name, et_email, et_department;
+    EditText et_name, et_email;
     TextView tv_message;
     String name, email, department;
-    //boolean nameModified, emailModified, departmentModified;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.personal_information);
+        setContentView(R.layout.student_information);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView tv_toolbar = (TextView) toolbar.findViewById(R.id.toolbar_title);
@@ -39,10 +37,9 @@ public class PersonalInformation extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         tv_toolbar.setText("" + getResources().getString(R.string.personalInfo));
 
-        et_name = (EditText) findViewById(R.id.et_info_name);
-        et_email = (EditText) findViewById(R.id.et_info_email);
-        et_department = (EditText) findViewById(R.id.et_info_department);
-        tv_message = (TextView) findViewById(R.id.tv_info_message);
+        et_name = (EditText) findViewById(R.id.et_student_info_name);
+        et_email = (EditText) findViewById(R.id.et_student_info_email);
+        tv_message = (TextView) findViewById(R.id.tv_student_info_message);
 
         et_name.addTextChangedListener(new TextWatcher() {
             @Override
@@ -60,7 +57,8 @@ public class PersonalInformation extends AppCompatActivity {
 
         et_email.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -69,12 +67,14 @@ public class PersonalInformation extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+            }
         });
 
-        et_department.addTextChangedListener(new TextWatcher() {
+        /*et_department.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -83,8 +83,9 @@ public class PersonalInformation extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {}
-        });
+            public void afterTextChanged(Editable s) {
+            }
+        });*/
     }
 
     @Override
@@ -114,7 +115,7 @@ public class PersonalInformation extends AppCompatActivity {
         isVerified = verifiedInformation();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_advance && isVerified) {
-            ParseUser user = ParseUser.getCurrentUser();
+            /*ParseUser user = ParseUser.getCurrentUser();
             user.put("Name",name);
             user.setEmail(email);
             user.put("Department", department);
@@ -138,8 +139,9 @@ public class PersonalInformation extends AppCompatActivity {
                     }
                 }
             };
-            timer.start();
-            //Toast.makeText(getApplicationContext(), "Click on advance", Toast.LENGTH_LONG).show();
+            timer.start();*/
+            Toast.makeText(getApplicationContext(), "Click on advance", Toast.LENGTH_LONG).show();
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
@@ -149,9 +151,8 @@ public class PersonalInformation extends AppCompatActivity {
 
         name = et_name.getText().toString();
         email = et_email.getText().toString();
-        department = et_department.getText().toString();
 
-        if(name.length() <= 0 || email.length() <= 0 || department.length() <= 0){
+        if(name.length() <= 0 || email.length() <= 0){
             tv_message.setText("Llena todos los datos personales.");
             tv_message.setVisibility(View.VISIBLE);
 
@@ -163,7 +164,7 @@ public class PersonalInformation extends AppCompatActivity {
     }
 
     public void CallAddAsesoryActivity(){
-        Intent intent = new Intent(PersonalInformation.this, AddAsesory.class);
+        Intent intent = new Intent(PersonalInformationStudent.this, AddAsesory.class);
         //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ import com.parse.SignUpCallback;
  */
 public class Signup extends AppCompatActivity implements View.OnClickListener{
 
+    CheckBox chb_asesor, chb_alumno;
     EditText et_username, et_password, et_confpassword;
     TextView tv_message;
     ProgressDialog progressDialog;
@@ -40,10 +42,45 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         tv_toolbar.setText("" + getResources().getString(R.string.signup));
 
+        chb_asesor = (CheckBox) findViewById(R.id.chb_asesor);
+        chb_alumno = (CheckBox) findViewById(R.id.chb_alumno);
         et_username = (EditText) findViewById(R.id.et_signup_username);
         et_password = (EditText) findViewById(R.id.et_signup_password);
         et_confpassword = (EditText) findViewById(R.id.et_signup_confpassword);
         tv_message = (TextView) findViewById(R.id.tv_signup_message);
+
+        /*chb_asesor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //chb_asesor.setChecked(true);
+                chb_alumno.setChecked(false);
+                et_username.setText("Numero de empleado");
+            }
+        });
+
+        chb_alumno.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //chb_alumno.setChecked(true);
+                chb_asesor.setChecked(false);
+                et_username.setText("Matricula de alumno");
+
+            }
+        });*/
+
+    }
+
+    public void onCheckboxClicked(View view){
+        switch (view.getId()){
+            case R.id.chb_asesor:
+                chb_alumno.setChecked(false);
+                et_username.setHint("Numero de empleado");
+                break;
+            case R.id.chb_alumno:
+                chb_asesor.setChecked(false);
+                et_username.setHint("Matricula");
+                break;
+        }
     }
 
     @Override
@@ -53,25 +90,37 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
         }
     }
 
-    public void isUserCorrect(){
+    public void isUserCorrect() {
         String username, password, confPassword;
-        boolean isCorrect;
+        boolean isPasswordCorrect;
+        boolean isAsesor = false;
+        boolean isStudent = false;
 
         username = et_username.getText().toString();
         password = et_password.getText().toString();
         confPassword = et_confpassword.getText().toString();
 
-        if(password.equals(confPassword)){
-            isCorrect = true;
-        }else{
-            isCorrect = false;
+        if (password.equals(confPassword)) {
+            isPasswordCorrect = true;
+        } else {
+            isPasswordCorrect = false;
         }
 
-        if(username.equals("") || password.equals("") || confPassword.equals("")){
+        if (chb_asesor.isChecked() && username.startsWith("0") && username.length() == 6) {
+            isAsesor = true;
+            isStudent = false;
+        } else if(chb_alumno.isChecked() && username.length() >= 7){
+            isAsesor = false;
+            isStudent = true;
+        }
+
+        if (username.equals("") || password.equals("") || confPassword.equals("")) {
             tv_message.setVisibility(View.VISIBLE);
             tv_message.setText("Llena todas las formas"); //+ R.string.fill_formas);
-        }else if(isCorrect){
-            tv_message.setVisibility(View.INVISIBLE);
+        } else if (isPasswordCorrect && isAsesor) {
+            //tv_message.setVisibility(View.INVISIBLE);
+            /*tv_message.setVisibility(View.VISIBLE);
+            tv_message.setText("Asesor");*/
             ParseUser user = new ParseUser();
             user.setUsername(username);
             user.setPassword(password);
@@ -97,7 +146,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
                                 }
                             }).start();
 
-                            OpenPersonalInformation();
+                            OpenPersonalInformation("Asesor");
 
                         } else {
                             //Show a message with the ParseException to know the error
@@ -111,17 +160,43 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
                     }
                 }
             });
-        } else{
+        } else if (isPasswordCorrect && isStudent) {
+            OpenPersonalInformation("Student");
+
+            /*
+            * Type code for student
+            * */
+        } else if (chb_asesor.isChecked() && !isAsesor){
             tv_message.setVisibility(View.VISIBLE);
-            tv_message.setText("La contraseña es diferente.");// + R.string.password_different);
-            Toast.makeText(getApplicationContext(), "Password different", Toast.LENGTH_LONG).show();
+            tv_message.setText("Numero de empleado no cumple los requisitos.");
+        }else if(chb_alumno.isChecked() && !isStudent){
+            tv_message.setVisibility(View.VISIBLE);
+            tv_message.setText("Matricula no cumple los requisitos.");
+        }
+        /*username.length() < 5 || username.length() > 8) {
+            if (chb_asesor.isChecked() && !isAsesor) {
+
+            } else {
+
+
+            // + R.string.password_different);
+        }*/else if(!isPasswordCorrect){
+            tv_message.setVisibility(View.VISIBLE);
+            tv_message.setText("La contraseña es incorrecta");
         }
     }
 
-    public void OpenPersonalInformation(){
-        Intent intent = new Intent(Signup.this, PersonalInformation.class);
-        startActivity(intent);
-        finish();
+    public void OpenPersonalInformation(String category){
+
+        if(category.equals("Asesor")){
+            Intent intent = new Intent(Signup.this, PersonalInformationAsesor.class);
+            startActivity(intent);
+            finish();
+        }else{
+            Intent intent = new Intent(Signup.this, PersonalInformationStudent.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override

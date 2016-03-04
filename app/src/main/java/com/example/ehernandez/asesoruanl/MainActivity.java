@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.parse.ParseAnonymousUtils;
 import com.parse.ParseUser;
@@ -53,8 +52,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ParseUser currentUser = ParseUser.getCurrentUser();
             if(currentUser != null){
                 //Send user to mainActivity
-                Intent intent = new Intent(this, AddAsesory.class);
-                startActivity(intent);
+                if(currentUser.get("Name") != null){
+                    Intent intent = new Intent(this, AddAsesory.class);
+                    startActivity(intent);
+                } else{
+                    Intent intent = new Intent(this, PersonalInformationAsesor.class);
+                    startActivity(intent);
+                }
                 //finish();
             } else{
                 // Send to RegisterUser

@@ -17,7 +17,7 @@
     <string name="addAsesory">Agregar asesoría</string>
     <string name="searchAsesory">Buscar asesoría</string>
 
-    <string name="username">Usuario</string>
+    <string name="username">Número de empleado</string>
     <string name="email">Correo electrónico</string>
     <string name="password">Contraseña</string>
     <string name="conf_password">Confirmar contraseña</string>
