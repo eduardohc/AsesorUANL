@@ -4,6 +4,30 @@
 
     <include layout="@layout/toolbar"/>
 
+    <RelativeLayout
+        android:id="@+id/rl_listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="No tienes ninguna asesoría registrada. Presiona + para agregar asesoría."
+            android:textSize="20sp"
+            android:visibility="invisible"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:id="@+id/tv_searchconsultancy_message"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lv_allConsultancies"
+            android:choiceMode="singleChoice"/>
+
+    </RelativeLayout>
 
 </LinearLayout>

@@ -6,6 +6,8 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="red">#FE2E2E</color>
-    <color name="green">#40FF00</color>
+    <color name="green">#327214</color>
+    <color name="grey">#F1F1F1</color>
+    <color name="grirish">#A4A4A4</color>
 
 </resources>

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
@@ -48,26 +49,6 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
         et_password = (EditText) findViewById(R.id.et_signup_password);
         et_confpassword = (EditText) findViewById(R.id.et_signup_confpassword);
         tv_message = (TextView) findViewById(R.id.tv_signup_message);
-
-        /*chb_asesor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                //chb_asesor.setChecked(true);
-                chb_alumno.setChecked(false);
-                et_username.setText("Numero de empleado");
-            }
-        });
-
-        chb_alumno.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                //chb_alumno.setChecked(true);
-                chb_asesor.setChecked(false);
-                et_username.setText("Matricula de alumno");
-
-            }
-        });*/
-
     }
 
     public void onCheckboxClicked(View view){
@@ -75,10 +56,16 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
             case R.id.chb_asesor:
                 chb_alumno.setChecked(false);
                 et_username.setHint("Numero de empleado");
+                et_username.getText().clear();
+                //et_password.getText().clear();
+                //et_confpassword.getText().clear();
                 break;
             case R.id.chb_alumno:
                 chb_asesor.setChecked(false);
                 et_username.setHint("Matricula");
+                et_username.getText().clear();
+                //et_password.getText().clear();
+                //et_confpassword.getText().clear();
                 break;
         }
     }
@@ -91,7 +78,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
     }
 
     public void isUserCorrect() {
-        String username, password, confPassword;
+        final String username, password, confPassword;
         boolean isPasswordCorrect;
         boolean isAsesor = false;
         boolean isStudent = false;
@@ -124,6 +111,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
             ParseUser user = new ParseUser();
             user.setUsername(username);
             user.setPassword(password);
+            user.put("Ocupacion", "Asesor");
             user.signUpInBackground(new SignUpCallback() {
                 @Override
                 public void done(ParseException e) {
@@ -148,12 +136,22 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
 
                             OpenPersonalInformation("Asesor");
 
-                        } else {
+                        }//else if(ParseException.USERNAME_TAKEN){
+                            //tv_message.setText("La numero de empleado de maestro ya existe");
+                        else {
                             //Show a message with the ParseException to know the error
                             String message;
                             message = e.getMessage();
-                            Toast.makeText(getApplicationContext(), " " + message,
-                                    Toast.LENGTH_LONG).show();
+                            if(message.equals("username " + username + " already taken")){
+                                tv_message.setVisibility(View.VISIBLE);
+                                tv_message.setText("Ya existe un asesor con este usuario.");
+                            }else{
+                                tv_message.setVisibility(View.VISIBLE);
+                                tv_message.setText(message);
+                            }
+
+                            //Toast.makeText(getApplicationContext(), " " + message,
+                              //      Toast.LENGTH_LONG).show();
                         }
                     } catch (Exception exception) {
                         exception.printStackTrace();
@@ -161,8 +159,56 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
                 }
             });
         } else if (isPasswordCorrect && isStudent) {
-            OpenPersonalInformation("Student");
+            ParseUser user = new ParseUser();
+            user.setUsername(username);
+            user.setPassword(password);
+            user.put("Ocupacion", "Alumno");
+            user.signUpInBackground(new SignUpCallback() {
+                @Override
+                public void done(ParseException e) {
+                    try {
+                        if (e == null) {
+                            // Create a progressDialog to display the sign up progress
 
+                            progressDialog = ProgressDialog.show(Signup.this,
+                                    "Please wait..", "Singing up user..", true);
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        // Time progressDialog will be displayed
+                                        Thread.sleep(10000);
+                                    } catch (Exception exception) {
+                                        exception.printStackTrace();
+                                    }
+                                    progressDialog.dismiss();
+                                }
+                            }).start();
+
+                            OpenPersonalInformation("Student");
+
+                        } /*else if(e.equals(ParseException.USERNAME_TAKEN)){
+                            tv_message.setText("La matricula ya existe");
+                        }*/
+                        else{
+                            //Show a message with the ParseException to know the error
+                            String message;
+                            message = e.getMessage();
+                            if(message.equals("username " + username + " already taken")){
+                                tv_message.setVisibility(View.VISIBLE);
+                                tv_message.setText("Ya existe un asesor con esta matricula.");
+                            }else{
+                                tv_message.setVisibility(View.VISIBLE);
+                                tv_message.setText(message);
+                            }
+                            /*Toast.makeText(getApplicationContext(), " " + message,
+                                    Toast.LENGTH_LONG).show();*/
+                        }
+                    } catch (Exception exception) {
+                        exception.printStackTrace();
+                    }
+                }
+            });
             /*
             * Type code for student
             * */

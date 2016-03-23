@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/OverviewLayout">
+
+    <include layout="@layout/toolbar"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Escribe materia a impartir: "
+        android:textSize="18dp"
+        android:id="@+id/tv_addasesor_class"
+        android:layout_gravity="center_vertical" />
+
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:inputType="textNoSuggestions"
+        android:hint="Materia"
+        android:gravity="center"
+        android:id="@+id/et_addasesor_class" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Selecciona hora: "
+        android:textSize="18dp"
+        android:id="@+id/tv_addasesor_hour"
+        android:layout_gravity="center_vertical" />
+
+    <NumberPicker
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/np_addasesor_hours"
+        android:descendantFocusability="blocksDescendants"
+        android:layout_gravity="center" />
+
+</LinearLayout>

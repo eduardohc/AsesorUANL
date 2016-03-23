@@ -1,5 +1,6 @@
 package com.example.ehernandez.asesoruanl;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,11 +9,14 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -24,6 +28,7 @@ public class PersonalInformationAsesor extends AppCompatActivity {
     EditText et_name, et_email, et_department;
     TextView tv_message;
     String name, email, department;
+    boolean emailDifferent;
     //boolean nameModified, emailModified, departmentModified;
 
     @Override
@@ -107,37 +112,63 @@ public class PersonalInformationAsesor extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
 
         Boolean isVerified;
-
+        //String message;
         int id = item.getItemId();
         isVerified = verifiedInformation();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_advance && isVerified) {
             ParseUser user = ParseUser.getCurrentUser();
-            user.put("Name",name);
             user.setEmail(email);
-            user.put("Department", department);
+            user.put("Name", name);
             user.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
-                    tv_message.setVisibility(View.VISIBLE);
-                    tv_message.setText("Tu información fue guardada exitosamente");
-                    tv_message.setTextColor(getResources().getColor(R.color.appColor));
-                }
-            });
-            Thread timer = new Thread() {
-                @Override
-                public void run() {
-                    try {
-                        sleep(1500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } finally {
-                        CallAddAsesoryActivity();
+                    if (e == null) {
+                        emailDifferent = true;
+                    } else {
+                        emailDifferent = false;
+                        String message;
+                        message = e.getMessage();
+                        if (message.equals("the email address " + email + " has already been taken")) {
+                            tv_message.setVisibility(View.VISIBLE);
+                            tv_message.setText("Ya existe un asesor con este correo electronico.");
+                        } else {
+                            tv_message.setVisibility(View.VISIBLE);
+                            tv_message.setText(message);
+                        }
                     }
                 }
-            };
-            timer.start();
-            //Toast.makeText(getApplicationContext(), "Click on advance", Toast.LENGTH_LONG).show();
+            });
+
+            ParseObject object = new ParseObject("Maestro");
+            if(emailDifferent) {
+                object.put("Name", name);
+                object.put("Email", email);
+                object.put("Department", department);
+                object.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        tv_message.setVisibility(View.VISIBLE);
+                        tv_message.setText("Tu información fue guardada exitosamente");
+                        tv_message.setTextColor(getResources().getColor(R.color.appColor));
+                    }
+                });
+
+                Thread timer = new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            sleep(1500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } finally {
+                            CallAddAsesoryActivity();
+                            finish();
+                        }
+                    }
+                };
+                timer.start();
+            }
         }
 
         return super.onOptionsItemSelected(item);
@@ -160,8 +191,16 @@ public class PersonalInformationAsesor extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.
+                INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        return true;
+    }
+
     public void CallAddAsesoryActivity(){
-        Intent intent = new Intent(PersonalInformationAsesor.this, AddAsesory.class);
+        Intent intent = new Intent(PersonalInformationAsesor.this, MyConsultancies.class);
         //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

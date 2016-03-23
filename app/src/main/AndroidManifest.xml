@@ -30,11 +30,17 @@
 
         <activity android:name=".PersonalInformationAsesor"/>
 
-        <activity android:name=".AddAsesory"/>
+        <activity android:name=".MyConsultancies"/>
 
-        <activity android:name=".SearchAsesory"/>
+        <activity android:name=".SearchConsultancy"/>
 
         <activity android:name=".PersonalInformationStudent"/>
+
+        <activity android:name=".AddAsesorConsultancy"/>
+
+        <activity android:name=".AddStudentConsultancy"/>
+
+        <activity android:name=".EditConsultancy"/>
     </application>
 
 </manifest>

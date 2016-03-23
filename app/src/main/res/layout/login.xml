@@ -6,7 +6,7 @@
 
     <EditText
         style="@style/GeneralEditText.First"
-        android:inputType="textEmailAddress"
+        android:inputType="numberDecimal"
         android:hint="@string/username"
         android:id="@+id/et_login_username" />
 
@@ -19,7 +19,6 @@
 
     <TextView
         style="@style/MessageError"
-        android:text="Llena todas las formas"
         android:id="@+id/tv_login_error"/>
 
     <Button
@@ -30,6 +29,6 @@
     <TextView
         style="@style/LoginTextView"
         android:text="@string/password_forgotten"
-        android:id="@+id/textView" />
+        android:id="@+id/tv_login_recoverPassword" />
 
 </LinearLayout>

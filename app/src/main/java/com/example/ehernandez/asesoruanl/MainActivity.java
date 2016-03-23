@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()){
             case R.id.btn_search_asesory:
-                intent = new Intent(this, SearchAsesory.class);
+                intent = new Intent(this, SearchConsultancy.class);
                 startActivity(intent);
                 break;
             case R.id.btn_asesor_register:
@@ -52,11 +52,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ParseUser currentUser = ParseUser.getCurrentUser();
             if(currentUser != null){
                 //Send user to mainActivity
-                if(currentUser.get("Name") != null){
-                    Intent intent = new Intent(this, AddAsesory.class);
+                if(currentUser.getEmail() != null){
+                    Intent intent = new Intent(this, MyConsultancies.class);
+                    startActivity(intent);
+                } else if(currentUser.get("Ocupacion").equals("Asesor")){
+                    Intent intent = new Intent(this, PersonalInformationAsesor.class);
                     startActivity(intent);
                 } else{
-                    Intent intent = new Intent(this, PersonalInformationAsesor.class);
+                    Intent intent = new Intent(this, PersonalInformationStudent.class);
                     startActivity(intent);
                 }
                 //finish();
