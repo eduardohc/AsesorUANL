@@ -209,23 +209,6 @@ public class EditConsultancy extends AppCompatActivity {
                 }
             });
 
-            /*ParseUser user = ParseUser.getCurrentUser();
-            ParseObject addClass = new ParseObject("Materia");
-            addClass.put("Usuario", user.getUsername());
-            //addClass.put("Nombre", user.get("Name"));
-            addClass.put("Email", user.getEmail());
-            addClass.put("Materia", et_class.getText().toString());
-            addClass.put("Hora", values[hours.getValue()]);
-            addClass.saveInBackground(new SaveCallback() {
-                @Override
-                public void done(ParseException e) {
-                    if (e != null) {
-                        Toast.makeText(getApplicationContext(),
-                                "Error al intentar agregar materia. Intente de nuevo.",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });*/
             finish();
         }
 

@@ -69,6 +69,7 @@
         android:layout_marginRight="5dp"
         android:textColor="@color/appColor"
         android:background="@drawable/border_buttoms"
-        android:text="Agendar cita"/>
+        android:text="Agendar cita"
+        android:id="@+id/btn_sendEmail"/>
 
 </LinearLayout>

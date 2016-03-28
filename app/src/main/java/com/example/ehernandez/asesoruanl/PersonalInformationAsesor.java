@@ -101,7 +101,7 @@ public class PersonalInformationAsesor extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
         MenuItem item= menu.findItem(R.id.action_advance);
-        item.setVisible(true);
+        item.setEnabled(true);
         return true;
     }
 

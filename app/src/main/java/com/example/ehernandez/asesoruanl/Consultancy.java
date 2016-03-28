@@ -8,11 +8,16 @@ public class Consultancy {
     private String summary;
     private String hour;
     private String objectId;
+    private String email;
 
-    public Consultancy(String name, String summary, String hour){
+
+
+    public Consultancy(String name, String summary, String hour, String objectId, String email){
         this.name = name;
         this.summary = summary;
         this.hour = hour;
+        this.objectId = objectId;
+        this.email = email;
     }
 
     public Consultancy(String name, String summary, String hour, String objectId){
@@ -52,5 +57,13 @@ public class Consultancy {
 
     public void setObjectId(String objectId) {
         this.objectId = objectId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

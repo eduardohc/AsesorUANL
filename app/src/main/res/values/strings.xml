@@ -10,6 +10,7 @@
     <string name="action_save">Guardar</string>
     <string name="action_edit">Editar</string>
     <string name="action_logout">Cerrar sesión</string>
+    <string name="action_send">Enviar</string>
 
     <string name="buscar_asesor">Buscar asesoría</string>
     <string name="asesor_register">Registrarse como asesor</string>
@@ -20,6 +21,7 @@
     <string name="myConsultancies">Perfil</string>
     <string name="addAsesory">Agregar asesoría</string>
     <string name="searchAsesory">Buscar asesoría</string>
+    <string name="sendEmail">Enviar correo</string>
 
     <string name="username">Número de empleado o matrícula</string>
     <string name="email">Correo electrónico</string>
@@ -31,6 +33,9 @@
 
     <string name="name">Nombre completo</string>
     <string name="department">Coordinación</string>
+
+    <string name="email_gretting">Estimado(a): </string>
+    <string name="email_beforeName">El alumno [Escribe aquí tu nombre] esta solicitando una asesoría de la materia </string>
 
     <string-array name="classes">
         <item>Matemáticas I</item>

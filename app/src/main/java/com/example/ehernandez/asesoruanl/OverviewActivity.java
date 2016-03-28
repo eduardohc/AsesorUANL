@@ -41,7 +41,7 @@ public class OverviewActivity extends AppCompatActivity{
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        //super.onBackPressed();
         System.exit(1);
     }
 }

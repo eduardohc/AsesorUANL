@@ -41,6 +41,8 @@
         <activity android:name=".AddStudentConsultancy"/>
 
         <activity android:name=".EditConsultancy"/>
+
+        <activity android:name=".SendEmail"/>
     </application>
 
 </manifest>

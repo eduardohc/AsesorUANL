@@ -57,7 +57,6 @@ public class MyConsultancies extends AppCompatActivity {
 
         tv_message = (TextView) findViewById(R.id.tv_addconsultancy_message);
         addData();
-
     }
 
     public void addData(){
@@ -71,11 +70,12 @@ public class MyConsultancies extends AppCompatActivity {
             public void done(List<ParseObject> objects, ParseException e) {
 
                 consultancyList = new ArrayList<>();
-
                 if (objects.size() <= 0) {
                     tv_message.setVisibility(View.VISIBLE);
+                    //tv_message.setText("No tienes ninguna asesoría registrada. Presiona + para agregar asesoría.");
                     hasConsultancy = false;
                 } else {
+                    tv_message.setVisibility(View.INVISIBLE);
                     hasConsultancy = true;
                     for (int i = 0; i < objects.size(); i++) {
                         String name, summary, hour, objectId;
@@ -130,26 +130,22 @@ public class MyConsultancies extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == android.R.id.home){
             finish();
-        }
-
-        if (id == R.id.addConsultancy) {
+        } else if (id == R.id.addConsultancy) {
             ParseUser user = ParseUser.getCurrentUser();//.getParseUser("Name");
             String occupancy = "" + user.get("Ocupacion");
             if(occupancy == "Asesor"){
                 AddAsesorConsultancy();
+                //tv_message.setVisibility(View.INVISIBLE);
             } else{
                 AddStudentConsultancy();
+                //tv_message.setVisibility(View.INVISIBLE);
             }
-        }
-
-        if(id == R.id.logout){
+        }else if(id == R.id.logout){
             ParseUser.logOut();
             Intent intent = new Intent(MyConsultancies.this, Register.class);
             startActivity(intent);
             finish();
-        }
-
-        if(id == R.id.editConsultancy && hasConsultancy){
+        }else if(id == R.id.editConsultancy && hasConsultancy){
 
             Button btn_cancel = (Button) findViewById(R.id.btn_cancel);
             Button btn_delete = (Button) findViewById(R.id.btn_delete);
@@ -191,7 +187,7 @@ public class MyConsultancies extends AppCompatActivity {
                 }
             });
 
-        }else {
+        }else if(!hasConsultancy){
             tv_message.setText("No tienes asesorias que editar.");
         }
 
@@ -204,29 +200,34 @@ public class MyConsultancies extends AppCompatActivity {
         intent.putExtra("Summary", consultancyList.get(position).getSummary());
         intent.putExtra("Hour", consultancyList.get(position).getHour());
         intent.putExtra("ObjectId", consultancyList.get(position).getObjectId());
-        startActivityForResult(intent, 1);
+        startActivity(intent);
 
     }
 
     public void deleteConsultancy(int position){
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Materia");
-        query.whereEqualTo("objectId", consultancyList.get(position).getObjectId());
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject object, ParseException e) {
-                try{
-                    object.delete();
-                    object.saveInBackground();
-                }catch (ParseException ex){
-                    ex.getMessage();
+        if(!consultancyList.isEmpty()){
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Materia");
+            query.whereEqualTo("objectId", consultancyList.get(position).getObjectId());
+            query.getFirstInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject object, ParseException e) {
+                    try{
+                        object.delete();
+                        object.saveInBackground();
+                    }catch (ParseException ex){
+                        ex.getMessage();
+                    }
                 }
-            }
-        });
+            });
 
-
-        consultancyList.remove(position);
-        mySummaryListAdapter.notifyDataSetChanged();
+            consultancyList.remove(position);
+            mySummaryListAdapter.notifyDataSetChanged();
+        }else {
+            tv_message.setVisibility(View.VISIBLE);
+            tv_message.setText("No tienes ninguna asesoría registrada. Presiona + para agregar asesoría.");
+            hasConsultancy = false;
+        }
 
     }
 
