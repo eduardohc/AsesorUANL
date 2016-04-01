@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/OverviewLayout">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <include layout="@layout/toolbar"/>
 
@@ -15,17 +17,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
-            android:text="No hay ninguna asesoría registrada."
+            android:text="No existe ninguna asesoría registrada."
             android:textSize="20sp"
             android:visibility="invisible"
             android:textColor="@color/black"
             android:gravity="center"
-            android:id="@+id/tv_searchconsultancy_message"/>
+            android:id="@+id/tv_searchbyconsultancy_message"/>
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/lv_allConsultancies"
+            android:id="@+id/lv_searchbyconsultancy_consultancies"
             android:choiceMode="singleChoice"/>
 
     </RelativeLayout>

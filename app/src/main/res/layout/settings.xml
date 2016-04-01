@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/OverviewLayout">
+
+    <include layout="@layout/toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    style="@style/IMGProfileSettings"
+                    android:id="@+id/img_settings_icon"/>
+
+                <TextView
+                    style="@style/TVProfileSettings"
+                    android:text="ASESOR UANL"
+                    android:id="@+id/tv_settings_appname"/>
+            </LinearLayout>
+
+            <TextView
+                style="@style/TVProfileSections"
+                android:text="@string/profile_general_section"/>
+
+            <LinearLayout
+                style="@style/LayoutSettingSections"
+                android:id="@+id/layout_settings_profile">
+
+                <TextView
+                    style="@style/TVProfileInformation"
+                    android:text="@string/profile_settings"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutSettingSections"
+                android:id="@+id/layout_settings_password">
+
+                <TextView
+                    style="@style/TVProfileInformation"
+                    android:text="@string/change_password"/>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/TVProfileSections"
+                android:text="@string/profile_more_information"
+                android:id="@+id/tv_more_info"/>
+
+            <LinearLayout
+                style="@style/LayoutSettingSections"
+                android:id="@+id/layout_settings_support">
+
+                <TextView
+                    style="@style/TVProfileInformation"
+                    android:text="Soporte"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutSettingSections"
+                android:id="@+id/layout_settings_privacyPolicy">
+
+                <TextView
+                    style="@style/TVProfileInformation"
+                    android:text="Politica de privacidad"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutSettingSections"
+                android:id="@+id/layout_settings_termsOfService">
+
+                <TextView
+                    style="@style/TVProfileInformation"
+                    android:text="Términos de servicio"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutSettingSections"
+                android:id="@+id/layout_settings_license">
+
+                <TextView
+                    style="@style/TVProfileInformation"
+                    android:text="Licensia"/>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/TVProfileSections"
+                android:text="@string/profile_actions"
+                android:id="@+id/tv_account"/>
+
+            <LinearLayout
+                style="@style/LayoutSettingSections"
+                android:id="@+id/layout_settings_logout"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    style="@style/TVProfileInformation"
+                    android:text="@string/action_logout"/>
+
+            </LinearLayout>
+
+            <!--
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"
+                android:text="Asesor UANL V.1.0.0"/>
+                -->
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

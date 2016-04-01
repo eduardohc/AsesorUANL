@@ -32,6 +32,8 @@
 
         <activity android:name=".MyConsultancies"/>
 
+        <activity android:name=".SearchByConsultancy"/>
+
         <activity android:name=".SearchConsultancy"/>
 
         <activity android:name=".PersonalInformationStudent"/>
@@ -43,6 +45,8 @@
         <activity android:name=".EditConsultancy"/>
 
         <activity android:name=".SendEmail"/>
+
+        <activity android:name=".Settings"/>
     </application>
 
 </manifest>

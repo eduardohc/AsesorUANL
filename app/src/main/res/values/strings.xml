@@ -29,6 +29,7 @@
     <string name="conf_password">Confirmar contraseña</string>
     <string name="password_different">Contraseña diferente. Vuelva a intentar.</string>
     <string name="password_forgotten">Olvidaste tu contraseña?</string>
+    <string name="change_password">Contraseña</string>
     <string name="fill_formas">Alguno de los campos esta vacio.</string>
 
     <string name="name">Nombre completo</string>
@@ -36,6 +37,11 @@
 
     <string name="email_gretting">Estimado(a): </string>
     <string name="email_beforeName">El alumno [Escribe aquí tu nombre] esta solicitando una asesoría de la materia </string>
+
+    <string name="profile_general_section">Configuración de la cuenta</string>
+    <string name="profile_settings">Perfil</string>
+    <string name="profile_more_information">Más información</string>
+    <string name="profile_actions">Cuenta</string>
 
     <string-array name="classes">
         <item>Matemáticas I</item>
@@ -47,5 +53,7 @@
         <item>Física III</item>
         <item>Física IV</item>
         <item>Algebra</item>
+        <item>Optimización</item>
+        <item>Temas Selectos de Optimización</item>
     </string-array>
 </resources>

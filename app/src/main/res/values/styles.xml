@@ -103,4 +103,52 @@
         <item name="android:visibility">invisible</item>
     </style>
 
+    <style name="IMGProfileSettings">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:clickable">false</item>
+        <item name="android:background">@color/appColor</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="TVProfileSettings">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="TVProfileSections">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textColor">@color/appColor</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center|start</item>
+    </style>
+
+    <style name="LayoutSettingSections">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginBottom">1dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="TVProfileInformation">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center|start</item>
+    </style>
+
+    <style name="TVProfileInformation.Data">
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:gravity">center|end</item>
+    </style>
+
 </resources>

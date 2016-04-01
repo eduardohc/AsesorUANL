@@ -9,8 +9,7 @@ public class Consultancy {
     private String hour;
     private String objectId;
     private String email;
-
-
+    private String consultantsNumber;
 
     public Consultancy(String name, String summary, String hour, String objectId, String email){
         this.name = name;
@@ -25,6 +24,11 @@ public class Consultancy {
         this.summary = summary;
         this.hour = hour;
         this.objectId = objectId;
+    }
+
+    public Consultancy(String summary, String consultantsNumber){
+        this.summary = summary;
+        this.consultantsNumber = consultantsNumber;
     }
 
     public String getName() {
@@ -63,7 +67,13 @@ public class Consultancy {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String email) { this.email = email; }
+
+    public String getConsultantsNumber() {
+        return consultantsNumber;
+    }
+
+    public void setConsultantsNumber(String consultantsNumber) {
+        this.consultantsNumber = consultantsNumber;
     }
 }

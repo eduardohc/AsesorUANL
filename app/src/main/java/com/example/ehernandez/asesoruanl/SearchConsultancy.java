@@ -49,19 +49,21 @@ public class SearchConsultancy extends AppCompatActivity{
 
         fullConsultancyList = new ArrayList<>();
         AddConsultancy();
-
-
     }
 
     public void AddConsultancy(){
         consultancyList = (ListView) findViewById(R.id.lv_allConsultancies);
 
+        Bundle bundle = getIntent().getExtras();
+
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Materia");
+        query.whereEqualTo("Materia", bundle.get("Materia"));
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (objects.size() <= 0) {
                     tv_message.setVisibility(View.VISIBLE);
+                    tv_message.setText("No hay asesorias registradas.");
                 } else {
                     for (int i = 0; i < objects.size(); i++) {
                         String name, summary, hour, objectId, email;
@@ -72,10 +74,8 @@ public class SearchConsultancy extends AppCompatActivity{
                         objectId = objects.get(i).getObjectId();
                         email = (String) objects.get(i).get("Email");
 
-
                         fullConsultancyList.add(
                                 i, new Consultancy(name, summary, hour, objectId, email));
-
                     }
 
                     fullConsultanciesAdapter = new MyFullConsultanciesAdapter(

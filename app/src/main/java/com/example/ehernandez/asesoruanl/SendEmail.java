@@ -20,8 +20,7 @@ import android.widget.Toast;
 public class SendEmail extends AppCompatActivity {
 
     private EditText body;
-    private EditText recipient;
-    String subjectText;
+    String recipientText, subjectText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +34,12 @@ public class SendEmail extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         tv_toolbar.setText("" + getResources().getString(R.string.sendEmail));
 
-        recipient = (EditText) findViewById(R.id.et_email_asesorEmail);
+        EditText recipient = (EditText) findViewById(R.id.et_email_asesorEmail);
         EditText subject = (EditText) findViewById(R.id.et_email_subject);
         body = (EditText) findViewById(R.id.et_email_bodyText);
 
         Bundle extras = getIntent().getExtras();
-        String bodyText, recipientText;
+        String bodyText;
 
         recipientText = "" + extras.get("Email");
         subjectText = "Solicitud de Asesoría";
@@ -48,7 +47,7 @@ public class SendEmail extends AppCompatActivity {
                 + "\n\n" + getResources().getText(R.string.email_beforeName) + " " +
                 extras.get("Summary") + " de " + extras.get("Hour") + ".";
 
-        recipient.setText(recipientText);
+        recipient.setText("Asesor");
         subject.setText(subjectText);
         body.setText(bodyText);
 
@@ -58,7 +57,7 @@ public class SendEmail extends AppCompatActivity {
 
         Intent email = new Intent(Intent.ACTION_SEND, Uri.parse("mailto:"));
         email.setType("text/plain");
-        email.putExtra(Intent.EXTRA_EMAIL, new String[] {recipient.getText().toString()});
+        email.putExtra(Intent.EXTRA_EMAIL, new String[] {recipientText});
         email.putExtra(Intent.EXTRA_SUBJECT, subjectText);
         email.putExtra(Intent.EXTRA_TEXT, body.getText().toString());
 

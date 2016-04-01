@@ -38,7 +38,6 @@ public class MyConsultancies extends AppCompatActivity {
     MySummaryListAdapter mySummaryListAdapter;
     LinearLayout layout_btns;
     ViewGroup.LayoutParams params;
-    //MenuItem btn_cancel;/
     private TextView tv_message;
     private int pos;
     private boolean hasConsultancy = false;
@@ -140,11 +139,6 @@ public class MyConsultancies extends AppCompatActivity {
                 AddStudentConsultancy();
                 //tv_message.setVisibility(View.INVISIBLE);
             }
-        }else if(id == R.id.logout){
-            ParseUser.logOut();
-            Intent intent = new Intent(MyConsultancies.this, Register.class);
-            startActivity(intent);
-            finish();
         }else if(id == R.id.editConsultancy && hasConsultancy){
 
             Button btn_cancel = (Button) findViewById(R.id.btn_cancel);
@@ -187,6 +181,14 @@ public class MyConsultancies extends AppCompatActivity {
                 }
             });
 
+        }else if(id == R.id.settings){
+            Intent intent = new Intent(MyConsultancies.this, Settings.class);
+            startActivity(intent);
+        }else if(id == R.id.logout){
+            ParseUser.logOut();
+            Intent intent = new Intent(MyConsultancies.this, Register.class);
+            startActivity(intent);
+            finish();
         }else if(!hasConsultancy){
             tv_message.setText("No tienes asesorias que editar.");
         }

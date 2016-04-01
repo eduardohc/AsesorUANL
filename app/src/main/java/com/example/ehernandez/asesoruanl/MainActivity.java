@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()){
             case R.id.btn_search_asesory:
-                intent = new Intent(this, SearchConsultancy.class);
+                intent = new Intent(this, SearchByConsultancy.class);
                 startActivity(intent);
                 break;
             case R.id.btn_asesor_register:
