@@ -20,7 +20,7 @@
         android:textSize="18sp"
         android:textColor="@color/appColor"
         android:text="Temas selectos de optimizacion"
-        android:background="@color/white"
+        android:background="@drawable/listview_item_selected"
         android:layout_gravity="center"/>
 
     <TextView
@@ -35,6 +35,6 @@
         android:textSize="15sp"
         android:textColor="@color/colorAccent"
         android:text="30 Asesores"
-        android:background="@color/white"
+        android:background="@drawable/listview_item_selected"
         android:gravity="left|center"/>
 </LinearLayout>

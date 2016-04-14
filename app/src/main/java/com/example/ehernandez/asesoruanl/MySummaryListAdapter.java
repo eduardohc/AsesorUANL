@@ -28,6 +28,7 @@ public class MySummaryListAdapter extends ArrayAdapter<Consultancy> {
                     R.layout.asesor_consultancy_layout, parent, false);
         }
 
+
         TextView tv_summary = (TextView) convertView.findViewById(R.id.tv_asesor_summary);
         TextView tv_hour = (TextView) convertView.findViewById(R.id.tv_asesor_hour);
 

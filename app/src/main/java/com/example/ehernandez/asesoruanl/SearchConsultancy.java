@@ -1,17 +1,12 @@
 package com.example.ehernandez.asesoruanl;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -29,8 +24,8 @@ public class SearchConsultancy extends AppCompatActivity{
     private ListView consultancyList;
     private TextView tv_message;
     ArrayList<Consultancy> fullConsultancyList;
-    MyFullConsultanciesAdapter fullConsultanciesAdapter;
-
+    FullConsultanciesAdapter fullConsultanciesAdapter;
+    Bundle bundle;
     //private String email;
 
     @Override
@@ -38,12 +33,19 @@ public class SearchConsultancy extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_asesory);
 
+        overridePendingTransition(R.anim.right_to_left_in, R.anim.right_to_left_out_anim);
+
+        bundle = getIntent().getExtras();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView tv_toolbar = (TextView) toolbar.findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        tv_toolbar.setText("" + getResources().getString(R.string.searchAsesory));
+        if(bundle.getString("Materia").length() > 20){
+            tv_toolbar.setText("" + getResources().getString(R.string.searchAsesory));
+        }else {
+            tv_toolbar.setText("" + bundle.getString("Materia"));
+        }
 
         tv_message = (TextView) findViewById(R.id.tv_searchconsultancy_message);
 
@@ -54,10 +56,9 @@ public class SearchConsultancy extends AppCompatActivity{
     public void AddConsultancy(){
         consultancyList = (ListView) findViewById(R.id.lv_allConsultancies);
 
-        Bundle bundle = getIntent().getExtras();
-
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Materia");
-        query.whereEqualTo("Materia", bundle.get("Materia"));
+        query.whereEqualTo("Clase", bundle.get("Materia"));
+        query.addAscendingOrder("Hora");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
@@ -69,7 +70,7 @@ public class SearchConsultancy extends AppCompatActivity{
                         String name, summary, hour, objectId, email;
 
                         name = (String) objects.get(i).get("Nombre");
-                        summary = (String) objects.get(i).get("Materia");
+                        summary = (String) objects.get(i).get("Clase");
                         hour = (String) objects.get(i).get("Hora");
                         objectId = objects.get(i).getObjectId();
                         email = (String) objects.get(i).get("Email");
@@ -78,7 +79,7 @@ public class SearchConsultancy extends AppCompatActivity{
                                 i, new Consultancy(name, summary, hour, objectId, email));
                     }
 
-                    fullConsultanciesAdapter = new MyFullConsultanciesAdapter(
+                    fullConsultanciesAdapter = new FullConsultanciesAdapter(
                             getApplicationContext(), fullConsultancyList);
                     consultancyList.setAdapter(fullConsultanciesAdapter);
                 }
@@ -98,6 +99,10 @@ public class SearchConsultancy extends AppCompatActivity{
             //Intent intent = new Intent(this, Register.class);
             //startActivity(intent);
             finish();
+
+            overridePendingTransition(
+                    R.anim.left_to_right_in, R.anim.left_to_right_out);
+
         }
 
         return super.onOptionsItemSelected(item);

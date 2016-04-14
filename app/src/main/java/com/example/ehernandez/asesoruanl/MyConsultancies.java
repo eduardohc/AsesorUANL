@@ -1,10 +1,14 @@
 package com.example.ehernandez.asesoruanl;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -25,6 +29,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +47,7 @@ public class MyConsultancies extends AppCompatActivity {
     private TextView tv_message;
     private int pos;
     private boolean hasConsultancy = false;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +63,22 @@ public class MyConsultancies extends AppCompatActivity {
 
         tv_message = (TextView) findViewById(R.id.tv_addconsultancy_message);
         addData();
+
+        context = this;
+
     }
 
     public void addData(){
         summaryList = (ListView) findViewById(R.id.lv_summary);
+        summaryList.setClickable(false);
+        summaryList.setEnabled(false);
+        summaryList.setFocusable(false);
+        summaryList.setFocusableInTouchMode(false);
         //tv_test = (TextView) findViewById(R.id.tv_test);
         ParseUser user = ParseUser.getCurrentUser();
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Materia");
         query.whereEqualTo("Usuario", user.getUsername());
+        query.addAscendingOrder("Hora");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
@@ -79,7 +94,7 @@ public class MyConsultancies extends AppCompatActivity {
                     for (int i = 0; i < objects.size(); i++) {
                         String name, summary, hour, objectId;
                         name = (String) objects.get(i).get("Nombre");
-                        summary = (String) objects.get(i).get("Materia");
+                        summary = (String) objects.get(i).get("Clase");
                         hour = (String) objects.get(i).get("Hora");
                         objectId = objects.get(i).getObjectId();
 
@@ -150,12 +165,38 @@ public class MyConsultancies extends AppCompatActivity {
             params.height = 82;
             layout_btns.setLayoutParams(params);
 
+            summaryList.setClickable(true);
+            summaryList.setEnabled(true);
+            summaryList.setFocusable(true);
+            summaryList.setFocusableInTouchMode(true);
+
             summaryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                TextView summary;
+                TextView hour;
+
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    summary = (TextView) view.findViewById(R.id.tv_asesor_summary);
+                    hour = (TextView) view.findViewById(R.id.tv_asesor_hour);
 
                     pos = position;
 
+                    for(int i = 0; i < summaryList.getCount(); i++) {
+
+                        if(pos == summaryList.getLastVisiblePosition()){
+                            summary.setSelected(false);
+                            hour.setSelected(false);
+                        } else if (position == i) {
+                            summary.setSelected(true);
+                            hour.setSelected(true);
+                            Log.d("Position", "" + position + " - " +
+                                    summaryList.getLastVisiblePosition());
+                        } else{
+                            summary.setSelected(false);
+                            hour.setSelected(false);
+                        }
+                    }
+                    //Toast.makeText(getApplicationContext(), "" + pos, Toast.LENGTH_SHORT).show();*/
                 }
             });
 
@@ -164,13 +205,43 @@ public class MyConsultancies extends AppCompatActivity {
                 public void onClick(View v) {
                     params.height = (0);
                     layout_btns.setLayoutParams(params);
+                    summaryList.setClickable(false);
+                    summaryList.setEnabled(false);
+                    summaryList.setFocusable(false);
+                    summaryList.setFocusableInTouchMode(false);
+                    summaryList.setSelector(R.drawable.listview_item_unselected);
+                    //summaryList.setChoiceMode();
                 }
             });
 
             btn_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    deleteConsultancy(pos);
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                    //Set title to AlertDialog
+                    alertDialogBuilder.setTitle(R.string.deleteAsesory);
+                    //
+                    String deleteSummary = getResources().getString(R.string.sureToDelete) + " " +
+                            consultancyList.get(pos).getSummary() + "?";
+                    alertDialogBuilder
+                            .setMessage(deleteSummary)
+                            .setCancelable(false)
+                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    deleteConsultancy(pos);
+                                }
+                            })
+                            .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+
                 }
             });
 
@@ -184,17 +255,13 @@ public class MyConsultancies extends AppCompatActivity {
         }else if(id == R.id.settings){
             Intent intent = new Intent(MyConsultancies.this, Settings.class);
             startActivity(intent);
-        }else if(id == R.id.logout){
-            ParseUser.logOut();
-            Intent intent = new Intent(MyConsultancies.this, Register.class);
-            startActivity(intent);
-            finish();
         }else if(!hasConsultancy){
             tv_message.setText("No tienes asesorias que editar.");
         }
 
         return super.onOptionsItemSelected(item);
     }
+
 
     public void editConsultancy(int position){
 
@@ -203,7 +270,6 @@ public class MyConsultancies extends AppCompatActivity {
         intent.putExtra("Hour", consultancyList.get(position).getHour());
         intent.putExtra("ObjectId", consultancyList.get(position).getObjectId());
         startActivity(intent);
-
     }
 
     public void deleteConsultancy(int position){
@@ -214,10 +280,10 @@ public class MyConsultancies extends AppCompatActivity {
             query.getFirstInBackground(new GetCallback<ParseObject>() {
                 @Override
                 public void done(ParseObject object, ParseException e) {
-                    try{
+                    try {
                         object.delete();
                         object.saveInBackground();
-                    }catch (ParseException ex){
+                    } catch (ParseException ex) {
                         ex.getMessage();
                     }
                 }
@@ -225,6 +291,8 @@ public class MyConsultancies extends AppCompatActivity {
 
             consultancyList.remove(position);
             mySummaryListAdapter.notifyDataSetChanged();
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.summaryDeleted),
+                    Toast.LENGTH_SHORT).show();
         }else {
             tv_message.setVisibility(View.VISIBLE);
             tv_message.setText("No tienes ninguna asesoría registrada. Presiona + para agregar asesoría.");
@@ -233,13 +301,13 @@ public class MyConsultancies extends AppCompatActivity {
 
     }
 
-    @Override
+    /*@Override
     public boolean onTouchEvent(MotionEvent event) {
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.
                 INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         return true;
-    }
+    }*/
 
     @Override
     public void onBackPressed() {

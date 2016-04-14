@@ -27,6 +27,8 @@ public class SendEmail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.send_email);
 
+        overridePendingTransition(R.anim.right_to_left_in, R.anim.right_to_left_out_anim);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView tv_toolbar = (TextView) toolbar.findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
@@ -90,6 +92,8 @@ public class SendEmail extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == android.R.id.home){
             finish();
+            overridePendingTransition(
+                    R.anim.left_to_right_in, R.anim.left_to_right_out);
         }
 
         if(id == R.id.action_send){

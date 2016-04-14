@@ -19,8 +19,8 @@
         android:paddingBottom="2dp"
         android:textSize="18sp"
         android:textColor="@color/appColor"
+        android:background="@drawable/listview_item_selected"
         android:text="Temas selectos de optimizacion para la comunicacion"
-        android:background="@color/white"
         android:layout_gravity="center"/>
 
     <TextView
@@ -34,7 +34,7 @@
         android:paddingBottom="3dp"
         android:textSize="15sp"
         android:textColor="@color/colorAccent"
+        android:background="@drawable/listview_item_selected"
         android:text="7:00 - 7:50"
-        android:background="@color/white"
         android:gravity="left|center"/>
 </LinearLayout>

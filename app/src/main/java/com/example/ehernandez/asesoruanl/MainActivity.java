@@ -37,8 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //intent = new Intent(this, Register.class);
                 //startActivity(intent);
                 break;
-        }
-    }
+        }    }
 
     public void AuthenticateUser(){
         //Determinate wheter the current user is an anonymous user

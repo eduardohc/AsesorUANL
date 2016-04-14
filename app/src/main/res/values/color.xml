@@ -10,5 +10,6 @@
     <color name="green">#327214</color>
     <color name="grey">#F1F1F1</color>
     <color name="grirish">#A4A4A4</color>
+    <color name="itemSelected">#DCDADA</color>
 
 </resources>

@@ -15,9 +15,9 @@ import java.util.ArrayList;
 /**
  * Created by ehernandez on 23/03/2016.
  */
-public class MyFullConsultanciesAdapter extends ArrayAdapter<Consultancy> {
+public class FullConsultanciesAdapter extends ArrayAdapter<Consultancy> {
 
-    public MyFullConsultanciesAdapter(Context context, ArrayList<Consultancy> consultancy){
+    public FullConsultanciesAdapter(Context context, ArrayList<Consultancy> consultancy){
         super(context, 0, consultancy);
     }
 

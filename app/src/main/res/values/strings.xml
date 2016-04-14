@@ -22,6 +22,11 @@
     <string name="addAsesory">Agregar asesoría</string>
     <string name="searchAsesory">Buscar asesoría</string>
     <string name="sendEmail">Enviar correo</string>
+    <string name="deleteAsesory">Eliminar asesoría</string>
+    <string name="sureToDelete">Estás seguro que deseas eliminar la asesoría de</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="summaryDeleted">Asesoría eliminada</string>
 
     <string name="username">Número de empleado o matrícula</string>
     <string name="email">Correo electrónico</string>
@@ -43,6 +48,11 @@
     <string name="profile_more_information">Más información</string>
     <string name="profile_actions">Cuenta</string>
 
+    <string name="settings_support">Soporte</string>
+    <string name="settings_privacyPolicy">Política de privacidad</string>
+    <string name="settings_terms">Términos de servicio</string>
+    <string name="settings_license">Licencia</string>
+
     <string-array name="classes">
         <item>Matemáticas I</item>
         <item>Matemáticas II</item>
@@ -55,5 +65,8 @@
         <item>Algebra</item>
         <item>Optimización</item>
         <item>Temas Selectos de Optimización</item>
+        <item>Ingeniería económica de proyectos</item>
+        <item>Programación orientada a objetos</item>
+        <item>Ingeniería de dispositivos móviles</item>
     </string-array>
 </resources>

@@ -37,10 +37,10 @@ public class EditConsultancy extends AppCompatActivity {
     AutoCompleteTextView editSummary;
     MenuItem btn_save;
     Bundle extras;
-    String[] values = {"7:00 - 7:50", "7:50 - 8:40", "8:40 - 9:30", "9:30 - 10:20",
-            "10:20 - 11:10", "11:10 - 12:00", "12:00 - 12:50", "12:50 - 1:40", "1:40 - 2:30",
-            "2:30 - 3:20", "3:20 - 4:10", "4:10 - 5:00", "5:00 - 5:40", "5:40 - 6:20", "6:20 - 7:00",
-            "7:00 - 7:40", "7:40 - 8:20", "8:20 - 9:00"};
+    String[] values = {"07:00 - 07:50", "07:50 - 08:40", "08:40 - 09:30", "09:30 - 10:20",
+            "10:20 - 11:10", "11:10 - 12:00", "12:00 - 12:50", "12:50 - 13:40", "13:40 - 14:30",
+            "14:30 - 15:20", "15:20 - 16:10", "16:10 - 17:00", "17:00 - 17:40", "17:40 - 18:20",
+            "18:20 - 19:00", "19:00 - 19:40", "19:40 - 20:20", "20:20 - 21:00"};
     String summary, objectId;
     boolean isModified;
 
@@ -48,6 +48,8 @@ public class EditConsultancy extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_consultancy);
+
+        overridePendingTransition(R.anim.right_to_left_in, R.anim.right_to_left_out_anim);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView tv_toolbar = (TextView) toolbar.findViewById(R.id.toolbar_title);
@@ -166,6 +168,10 @@ public class EditConsultancy extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == android.R.id.home){
             finish();
+
+
+            overridePendingTransition(
+                    R.anim.left_to_right_in, R.anim.left_to_right_out);
         }
 
         if(id == R.id.action_save){
@@ -193,7 +199,7 @@ public class EditConsultancy extends AppCompatActivity {
                         newSummary = editSummary.getText().toString();
                         newHour = values[editHours.getValue()];
 
-                        object.put("Materia", newSummary);
+                        object.put("Clase", newSummary);
                         object.put("Hora", newHour);
                         object.saveInBackground(new SaveCallback() {
                             @Override

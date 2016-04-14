@@ -26,7 +26,7 @@
 
                 <TextView
                     style="@style/TVProfileSettings"
-                    android:text="ASESOR UANL"
+                    android:text="@string/app_name"
                     android:id="@+id/tv_settings_appname"/>
             </LinearLayout>
 
@@ -65,7 +65,7 @@
 
                 <TextView
                     style="@style/TVProfileInformation"
-                    android:text="Soporte"/>
+                    android:text="@string/settings_support"/>
 
             </LinearLayout>
 
@@ -75,7 +75,7 @@
 
                 <TextView
                     style="@style/TVProfileInformation"
-                    android:text="Politica de privacidad"/>
+                    android:text="@string/settings_privacyPolicy"/>
 
             </LinearLayout>
 
@@ -85,7 +85,7 @@
 
                 <TextView
                     style="@style/TVProfileInformation"
-                    android:text="Términos de servicio"/>
+                    android:text="@string/settings_terms"/>
 
             </LinearLayout>
 
@@ -95,7 +95,7 @@
 
                 <TextView
                     style="@style/TVProfileInformation"
-                    android:text="Licensia"/>
+                    android:text="@string/settings_license"/>
 
             </LinearLayout>
 

@@ -20,11 +20,13 @@ import com.parse.ParseQuery;
 
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 /**
  * Created by ehernandez on 28/03/2016.
@@ -64,6 +66,28 @@ public class SearchByConsultancy extends AppCompatActivity{
         consultancyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                TextView tv_summary = (TextView)
+                        view.findViewById(R.id.tv_searchbyconsultancy_summary);
+                TextView tv_asesors = (TextView)
+                        view.findViewById(R.id.tv_searchbyconsultancy_asesors);
+
+                for(int i = 0; i < consultancyList.getCount(); i++) {
+
+                    if(position == consultancyList.getLastVisiblePosition()){
+                        tv_summary.setSelected(false);
+                        tv_asesors.setSelected(false);
+                    } else if (position == i) {
+                        tv_summary.setSelected(true);
+                        tv_asesors.setSelected(true);
+                        Log.d("Position", "" + position + " - " +
+                                consultancyList.getLastVisiblePosition());
+                    } else{
+                        tv_summary.setSelected(false);
+                        tv_asesors.setSelected(false);
+                    }
+                }
+
                 Intent intent = new Intent(SearchByConsultancy.this, SearchConsultancy.class);
                 intent.putExtra("Materia", arrayConsultancies.get(position).getSummary());
                 startActivity(intent);
@@ -73,10 +97,9 @@ public class SearchByConsultancy extends AppCompatActivity{
 
     public void getConsultancies(){
 
-        //arrayConsultancies.add(0, new Consultancy(consultancies[1], "5 asesores"));
-        //final ArrayList<Consultancy> temporal = new ArrayList<>();
-        //arrayConsultancies.clear();
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Materia");
+        query.orderByAscending("Clase");
+        //query.addDescendingOrder("Clase");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
@@ -86,99 +109,46 @@ public class SearchByConsultancy extends AppCompatActivity{
                     //tv_message.setText("No hay materias disponibles");
                 } else {
 
-                    List<String> temp = new ArrayList<String>();
+                    HashMap<String, Integer> numberDuplicates = new HashMap<>();
 
                     for(int i = 0; i < objects.size(); i++){
-                        materia = "" + objects.get(i).get("Materia");
-                        temp.add(materia);
+                        materia = "" + objects.get(i).get("Clase");
+                        numberDuplicates.put(materia, 0);
                     }
-
-                    Set<String> hs = new HashSet<String>();
-                    hs.addAll(temp);
-                    temp.clear();
-                    temp.addAll(hs);
-
-                    
-
-                    int count = 0;
-                    for(int i=0; i < temp.size();i++){
-                        //materia = "" + objects.get(i).get("Materia");
-                        for(int j = 0; j < objects.size();j++){
-                            materia = "" + objects.get(j).get("Materia");
-                            if(temp.get(i).equals(materia)){
-                                count++;
-                            }
-                        }
-
-                        if(count == 1){
-                            asesorCount = count + " asesor";
-                            arrayConsultancies.add(i, new Consultancy(temp.get(i), asesorCount));
-                            count = 0;
-                        } else if(count > 1){
-                            asesorCount = count + " asesores";
-                            arrayConsultancies.add(i, new Consultancy(temp.get(i), asesorCount));
-                            count = 0;
-                        }
-                    }
-
-                    /*
-                    *
-                    ** THIS SECTION WORKS BUT IS NOT EFICIENCY **
-                    *
-                    *
-                    boolean contain = false;
-                    int count = 0;
-                    int count2 = 0;
-                    int arrayA = 0;
-
 
                     for(int i = 0; i < objects.size(); i++){
-                        for(int j = i-1; j >= 0; j--){
-                            if(objects.get(i).get("Materia").equals(objects.get(j).get("Materia"))){
-                                count++;
-                                Log.d("Materia repetida", "" + objects.get(j).get("Materia"));
-                            }
+                        int count;
+                        materia = "" + objects.get(i).get("Clase");
+                        if(numberDuplicates.containsKey(materia)){
+                            count = numberDuplicates.get(materia);
+                            count += 1;
+                            numberDuplicates.put(materia, count);
                         }
-                        materia = "" + objects.get(i).get("Materia");
-
-                        if(count == 0){
-                            for(int j = 0; j < objects.size(); j++){
-                                if(objects.get(j).get("Materia").equals(objects.get(i).get("Materia"))){
-                                    count2++;
-                                }
-                            }
-
-                            if(count2 == 1){
-                                asesorCount = count2 + " asesor";
-                                arrayConsultancies.add(arrayA, new Consultancy(materia, asesorCount));
-                                count2 = 0;
-                                arrayA = arrayA + 1;
-                            } else if(count2 > 1){
-                                asesorCount = count2 + " asesores";
-
-                                count2 = 0;
-                                arrayA = arrayA + 1;
-                            }
-                            //contain = false;
-
-                        }
-                        count = 0;
-                    }*/
-
-                        //arrayConsultancies.add(i, new Consultancy(consultancies[i], asesorCount));*/
                     }
 
-                    searchByConsultancyAdapter = new SearchByConsultancyAdapter(getApplicationContext(),
-                            arrayConsultancies);
-                    consultancyList.setAdapter(searchByConsultancyAdapter);
+                    Map<String, Integer> treeMap = new TreeMap<>(numberDuplicates);
 
-                //}
+                    for(int i = 0; i < treeMap.size(); i++){
+                        String summary = "" + treeMap.keySet().toArray()[i];
+                        int totalSummaries = treeMap.get(summary);
+
+                        if(totalSummaries == 1){
+                            asesorCount = totalSummaries + " asesor";
+                            arrayConsultancies.add(i, new Consultancy(summary, asesorCount));
+                        } else if(totalSummaries > 1){
+                            asesorCount = totalSummaries + " asesores";
+                            arrayConsultancies.add(i, new Consultancy(summary, asesorCount));
+                        }
+                    }
+                }
+
+                searchByConsultancyAdapter = new SearchByConsultancyAdapter(getApplicationContext(),
+                        arrayConsultancies);
+
+                consultancyList.setAdapter(searchByConsultancyAdapter);
+
             }
         });
-    }
-
-    public void addConsultancy(int position, String summary, String asesorCount){
-
     }
 
     @Override
