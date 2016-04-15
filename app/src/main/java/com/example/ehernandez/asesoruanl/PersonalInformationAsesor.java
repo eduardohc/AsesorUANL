@@ -120,6 +120,7 @@ public class PersonalInformationAsesor extends AppCompatActivity {
             ParseUser user = ParseUser.getCurrentUser();
             user.setEmail(email);
             user.put("Name", name);
+            user.put("Dependencia", "FIME");
             user.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {

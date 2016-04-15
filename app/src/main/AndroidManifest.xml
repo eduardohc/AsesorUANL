@@ -48,6 +48,10 @@
         <activity android:name=".SendEmail"/>
 
         <activity android:name=".Settings"/>
+
+        <activity android:name=".ProfileSettings"/>
+
+        <activity android:name=".PasswordSettings"/>
     </application>
 
 </manifest>

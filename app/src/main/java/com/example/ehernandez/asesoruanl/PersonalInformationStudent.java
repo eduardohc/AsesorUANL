@@ -107,6 +107,7 @@ public class PersonalInformationStudent extends AppCompatActivity{
             ParseObject object = new ParseObject("Alumno");
             user.setEmail(email);
             user.put("Name", name);
+            user.put("Dependencia", "FIME");
             user.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
@@ -130,7 +131,6 @@ public class PersonalInformationStudent extends AppCompatActivity{
             if(emailDifferent){
                 object.put("Name", name);
                 object.put("Email", email);
-
                 object.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
