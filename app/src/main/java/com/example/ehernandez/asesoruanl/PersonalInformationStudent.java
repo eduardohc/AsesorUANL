@@ -131,7 +131,6 @@ public class PersonalInformationStudent extends AppCompatActivity{
             if(emailDifferent){
                 object.put("Name", name);
                 object.put("Email", email);
-                object.put("Dependencia", "FIME");
                 object.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {

@@ -37,7 +37,7 @@
     <string name="change_password">Contraseña</string>
     <string name="fill_formas">Alguno de los campos esta vacio.</string>
 
-    <string name="name">Nombre completo</string>
+    <string name="fullname">Nombre completo</string>
     <string name="department">Coordinación</string>
 
     <string name="email_gretting">Estimado(a): </string>
@@ -52,6 +52,14 @@
     <string name="settings_privacyPolicy">Política de privacidad</string>
     <string name="settings_terms">Términos de servicio</string>
     <string name="settings_license">Licencia</string>
+
+    <string name="profile_settings_resume">Así es como aparecen tus datos personales en Asesor UANL, por favor, proporciona los datos correctos.</string>
+    <string name="name">Nombre</string>
+    <string name="user">Usuario</string>
+    <string name="email_verified">Correo verificado</string>
+    <string name="verified">Verificado</string>
+    <string name="noVerified">No verificado</string>
+    <string name="dependency">Dependencia</string>
 
     <string-array name="classes">
         <item>Matemáticas I</item>

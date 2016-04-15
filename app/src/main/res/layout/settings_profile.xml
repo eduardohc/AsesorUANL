@@ -4,6 +4,91 @@
 
     <include layout="@layout/toolbar"/>
 
+    <TextView
+        style="@style/TVProfileSettings_Resume"
+        android:text="@string/profile_settings_resume"/>
 
+    <LinearLayout
+        style="@style/LayoutProfileSettings">
+
+        <TextView
+            style="@style/TVProfileSettings_User.Attributes"
+            android:text="@string/name"/>
+
+        <EditText
+            style="@style/ETProfileSettings_User"
+            android:inputType="textMultiLine"
+            android:text="Eduardo Alberto Hernandez Chavez"
+            android:id="@+id/et_profileSettings_name"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LayoutProfileSettings">
+
+        <TextView
+            style="@style/TVProfileSettings_User.Attributes"
+            android:text="@string/user"/>
+
+        <TextView
+            style="@style/TVProfileSettings_User"
+            android:text="1487011"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LayoutProfileSettings"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            style="@style/TVProfileSettings_User.Attributes"
+            android:text="@string/email"/>
+
+        <EditText
+            style="@style/ETProfileSettings_User"
+            android:inputType="textEmailAddress"
+            android:text="lalo.nr@hotmail.com"
+            android:id="@+id/et_profileSettings_email"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LayoutProfileSettings">
+
+        <TextView
+            style="@style/TVProfileSettings_User.Attributes"
+            android:text="@string/email_verified"/>
+
+        <TextView
+            style="@style/TVProfileSettings_User"
+            android:text="@string/noVerified"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LayoutProfileSettings">
+
+        <TextView
+            style="@style/TVProfileSettings_User.Attributes"
+            android:text="@string/department"/>
+
+        <EditText
+            style="@style/ETProfileSettings_User"
+            android:inputType="textMultiLine"
+            android:text="Sistemas"
+            android:id="@+id/et_profileSettings_department"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LayoutProfileSettings">
+
+        <TextView
+            style="@style/TVProfileSettings_User.Attributes"
+            android:text="@string/dependency"/>
+
+        <EditText
+            style="@style/ETProfileSettings_User"
+            android:inputType="textMultiLine"
+            android:text="FIME"
+            android:id="@+id/et_profileSettings_dependency"/>
+    </LinearLayout>
 
 </LinearLayout>

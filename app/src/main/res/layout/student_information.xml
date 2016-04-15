@@ -8,7 +8,7 @@
         style="@style/GeneralEditText.First"
         android:layout_height="50dp"
         android:inputType="textNoSuggestions"
-        android:hint="@string/name"
+        android:hint="@string/fullname"
         android:id="@+id/et_student_info_name" />
 
     <EditText
