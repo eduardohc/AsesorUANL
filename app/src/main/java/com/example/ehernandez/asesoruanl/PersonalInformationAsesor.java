@@ -145,6 +145,7 @@ public class PersonalInformationAsesor extends AppCompatActivity {
                 object.put("Name", name);
                 object.put("Email", email);
                 object.put("Department", department);
+                object.put("Dependencia", "FIME");
                 object.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {

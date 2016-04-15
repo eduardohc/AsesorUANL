@@ -33,14 +33,15 @@ public class Settings extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        Intent intent;
         switch (v.getId()){
             case R.id.layout_settings_profile:
-                Toast.makeText(getApplicationContext(), "Click on profile",
-                        Toast.LENGTH_SHORT).show();
+                intent = new Intent(Settings.this, ProfileSettings.class);
+                startActivity(intent);
                 break;
             case R.id.layout_settings_password:
-                Toast.makeText(getApplicationContext(), "Click on password",
-                        Toast.LENGTH_SHORT).show();
+                intent = new Intent(Settings.this, PasswordSettings.class);
+                startActivity(intent);
                 break;
             case R.id.layout_settings_support:
                 Toast.makeText(getApplicationContext(), "Click on Support",
@@ -60,7 +61,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener{
                 break;
             case R.id.layout_settings_logout:
                 ParseUser.logOut();
-                Intent intent = new Intent(Settings.this, Register.class);
+                intent = new Intent(Settings.this, Register.class);
                 startActivity(intent);
                 finish();
                 break;
