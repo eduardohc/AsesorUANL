@@ -31,7 +31,8 @@
 
         <TextView
             style="@style/TVProfileSettings_User"
-            android:text="1487011"/>
+            android:text="1487011"
+            android:id="@+id/tv_profilesettings_username"/>
 
     </LinearLayout>
 
@@ -59,7 +60,8 @@
 
         <TextView
             style="@style/TVProfileSettings_User"
-            android:text="@string/noVerified"/>
+            android:text="@string/noVerified"
+            android:id="@+id/tv_profileSettings_emailVerified"/>
 
     </LinearLayout>
 

@@ -179,11 +179,11 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
-        <item name="android:textSize">17sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:gravity">center|start</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:layout_weight">.3</item>
+        <item name="android:layout_weight">.35</item>
 
     </style>
 
@@ -192,17 +192,18 @@
         <item name="android:textColor">@color/appColor</item>
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center|start</item>
-        <item name="android:layout_weight">.7</item>
+        <item name="android:layout_weight">.68</item>
     </style>
 
     <style name="ETProfileSettings_User">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginRight">8dp</item>
         <item name="android:inputType">textNoSuggestions</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
-        <item name="android:layout_weight">.3</item>
+        <item name="android:layout_weight">.32</item>
     </style>
 
 </resources>
