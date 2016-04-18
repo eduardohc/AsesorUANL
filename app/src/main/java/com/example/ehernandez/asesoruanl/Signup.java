@@ -80,6 +80,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
     public void isUserCorrect() {
         final String username, password, confPassword;
         boolean isPasswordCorrect;
+        boolean isPasswordShort;
         boolean isAsesor = false;
         boolean isStudent = false;
 
@@ -93,6 +94,12 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
             isPasswordCorrect = false;
         }
 
+        if(password.length() < 6){
+            isPasswordShort = true;
+        }else{
+            isPasswordShort = false;
+        }
+
         if (chb_asesor.isChecked() && username.startsWith("0") && username.length() == 6) {
             isAsesor = true;
             isStudent = false;
@@ -104,7 +111,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
         if (username.equals("") || password.equals("") || confPassword.equals("")) {
             tv_message.setVisibility(View.VISIBLE);
             tv_message.setText("Llena todas las formas"); //+ R.string.fill_formas);
-        } else if (isPasswordCorrect && isAsesor) {
+        } else if (isPasswordCorrect && !isPasswordShort && isAsesor) {
             //tv_message.setVisibility(View.INVISIBLE);
             /*tv_message.setVisibility(View.VISIBLE);
             tv_message.setText("Asesor");*/
@@ -158,7 +165,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
                     }
                 }
             });
-        } else if (isPasswordCorrect && isStudent) {
+        } else if (isPasswordCorrect && !isPasswordShort && isStudent) {
             ParseUser user = new ParseUser();
             user.setUsername(username);
             user.setPassword(password);
@@ -218,17 +225,12 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
         }else if(chb_alumno.isChecked() && !isStudent){
             tv_message.setVisibility(View.VISIBLE);
             tv_message.setText("Matricula no cumple los requisitos.");
-        }
-        /*username.length() < 5 || username.length() > 8) {
-            if (chb_asesor.isChecked() && !isAsesor) {
-
-            } else {
-
-
-            // + R.string.password_different);
-        }*/else if(!isPasswordCorrect){
+        }else if(!isPasswordCorrect){
             tv_message.setVisibility(View.VISIBLE);
             tv_message.setText("La contraseña es incorrecta");
+        }else if(isPasswordShort){
+            tv_message.setVisibility(View.VISIBLE);
+            tv_message.setText("La contraseña es muy corta.");
         }
     }
 
