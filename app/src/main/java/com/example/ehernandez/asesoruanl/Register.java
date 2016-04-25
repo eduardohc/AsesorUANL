@@ -1,6 +1,7 @@
 package com.example.ehernandez.asesoruanl;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +14,7 @@ import android.widget.TextView;
  */
 public class Register extends AppCompatActivity implements View.OnClickListener{
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +25,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        tv_toolbar.setText("" + getResources().getString(R.string.register));
+        tv_toolbar.setText("Usuario");// + getResources().getString(R.string.register));
+
+        TextView tv_title = (TextView) findViewById(R.id.tv_register_title);
+
+        Typeface typeface_title = Typeface.createFromAsset(
+                getAssets(), "fonts/Montserrat-Light.otf");
+        tv_title.setTypeface(typeface_title);
 
     }
 

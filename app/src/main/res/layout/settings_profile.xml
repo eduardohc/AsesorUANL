@@ -75,7 +75,6 @@
         <EditText
             style="@style/ETProfileSettings_User"
             android:inputType="textMultiLine"
-            android:text="Sistemas"
             android:id="@+id/et_profileSettings_department"/>
     </LinearLayout>
 
@@ -89,6 +88,9 @@
         <EditText
             style="@style/ETProfileSettings_User"
             android:inputType="textMultiLine"
+            android:editable="false"
+            android:enabled="false"
+            android:textColor="@color/black"
             android:text="FIME"
             android:id="@+id/et_profileSettings_dependency"/>
     </LinearLayout>

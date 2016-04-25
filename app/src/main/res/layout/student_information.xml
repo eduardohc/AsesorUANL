@@ -4,10 +4,23 @@
 
     <include layout="@layout/toolbar"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:text="Proporciona los siguientes datos"
+        android:textSize="20sp"
+        android:textColor="@color/appColor"
+        android:id="@+id/tv_addsesor_resume"
+        android:gravity="center" />
+
     <EditText
-        style="@style/GeneralEditText.First"
+        style="@style/GeneralEditText"
         android:layout_height="50dp"
-        android:inputType="textNoSuggestions"
+        android:inputType="textNoSuggestions|textCapWords"
         android:hint="@string/fullname"
         android:id="@+id/et_student_info_name" />
 

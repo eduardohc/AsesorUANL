@@ -1,5 +1,6 @@
 package com.example.ehernandez.asesoruanl;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -54,7 +56,7 @@ public class MyConsultancies extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        tv_toolbar.setText("" + getResources().getString(R.string.profile));
+        tv_toolbar.setText("" + getResources().getString(R.string.myAsesories));
 
         tv_message = (TextView) findViewById(R.id.tv_addconsultancy_message);
         addData();
@@ -69,7 +71,6 @@ public class MyConsultancies extends AppCompatActivity {
         summaryList.setEnabled(false);
         summaryList.setFocusable(false);
         summaryList.setFocusableInTouchMode(false);
-        //tv_test = (TextView) findViewById(R.id.tv_test);
         ParseUser user = ParseUser.getCurrentUser();
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Materia");
         query.whereEqualTo("Usuario", user.getUsername());
@@ -125,7 +126,6 @@ public class MyConsultancies extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        //btn_cancel = menu.findItem(R.id.cancel);
         return true;
     }
 
@@ -136,7 +136,6 @@ public class MyConsultancies extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == android.R.id.home){
             finish();
         } else if (id == R.id.addConsultancy) {
@@ -144,10 +143,8 @@ public class MyConsultancies extends AppCompatActivity {
             String occupancy = "" + user.get("Ocupacion");
             if(occupancy == "Asesor"){
                 AddAsesorConsultancy();
-                //tv_message.setVisibility(View.INVISIBLE);
             } else{
                 AddStudentConsultancy();
-                //tv_message.setVisibility(View.INVISIBLE);
             }
         }else if(id == R.id.editConsultancy && hasConsultancy){
 
@@ -184,8 +181,8 @@ public class MyConsultancies extends AppCompatActivity {
                         } else if (position == i) {
                             summary.setSelected(true);
                             hour.setSelected(true);
-                            Log.d("Position", "" + position + " - " +
-                                    summaryList.getLastVisiblePosition());
+                            //Log.d("Position", "" + position + " - " +
+                              //      summaryList.getLastVisiblePosition());
                         } else{
                             summary.setSelected(false);
                             hour.setSelected(false);
@@ -198,6 +195,7 @@ public class MyConsultancies extends AppCompatActivity {
             btn_cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     params.height = (0);
                     layout_btns.setLayoutParams(params);
                     summaryList.setClickable(false);
@@ -264,7 +262,7 @@ public class MyConsultancies extends AppCompatActivity {
         intent.putExtra("Summary", consultancyList.get(position).getSummary());
         intent.putExtra("Hour", consultancyList.get(position).getHour());
         intent.putExtra("ObjectId", consultancyList.get(position).getObjectId());
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 
     public void deleteConsultancy(int position){
@@ -294,6 +292,31 @@ public class MyConsultancies extends AppCompatActivity {
             hasConsultancy = false;
         }
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 1){
+            if(resultCode == Activity.RESULT_CANCELED){
+                Log.d("ActivityResult","RESULT_CANCELED");
+                editConsultancyCanceled();
+            }else{
+                Log.d("ActivityResult","RESULT_OK");
+                editConsultancyCanceled();
+            }
+        }
+    }
+
+    public void editConsultancyCanceled(){
+        params.height = (0);
+        layout_btns.setLayoutParams(params);
+        summaryList.setClickable(false);
+        summaryList.setEnabled(false);
+        summaryList.setFocusable(false);
+        summaryList.setFocusableInTouchMode(false);
+        summaryList.setSelector(R.drawable.listview_item_unselected);
     }
 
     /*@Override

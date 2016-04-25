@@ -2,6 +2,7 @@ package com.example.ehernandez.asesoruanl;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -53,7 +54,7 @@ public class AddStudentConsultancy extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        tv_toolbar.setText("Agregar");// + getResources().getString(R.string.addAsesory));
+        tv_toolbar.setText("" + getResources().getString(R.string.addAsesory));
 
         et_class = (AutoCompleteTextView) findViewById(R.id.et_addasesor_class);
         et_class.setAdapter(classes);

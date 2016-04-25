@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.ParseUser;
+
 /**
  * Created by Eduardo on 24/03/2016.
  */
@@ -21,6 +23,7 @@ public class SendEmail extends AppCompatActivity {
 
     private EditText body;
     String recipientText, subjectText;
+    ParseUser user = ParseUser.getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +44,23 @@ public class SendEmail extends AppCompatActivity {
         body = (EditText) findViewById(R.id.et_email_bodyText);
 
         Bundle extras = getIntent().getExtras();
-        String bodyText;
+        String bodyText, name;
 
         recipientText = "" + extras.get("Email");
         subjectText = "Solicitud de Asesoría";
-        bodyText = "" + getResources().getText(R.string.email_gretting) + " " + extras.get("Name")
-                + "\n\n" + getResources().getText(R.string.email_beforeName) + " " +
-                extras.get("Summary") + " de " + extras.get("Hour") + ".";
+
+        name = "" + user.get("Name");
+
+        if(name.equals("null") || name.equals("")){
+            bodyText = "" + getResources().getText(R.string.email_gretting) + " " + extras.get("Name")
+                    + "\n\n" + getResources().getText(R.string.email_beforeName) + " " +
+                    extras.get("Summary") + " de " + extras.get("Hour") + ".";
+        }else{
+            bodyText = "" + getResources().getText(R.string.email_gretting) + " " + extras.get("Name")
+                    + "\n\n" + "El alumno " + user.get("Name") + " esta solicitando una asesoría de la materia " +
+                    extras.get("Summary") + " de " + extras.get("Hour") + ".";
+        }
+
 
         recipient.setText("Asesor");
         subject.setText(subjectText);

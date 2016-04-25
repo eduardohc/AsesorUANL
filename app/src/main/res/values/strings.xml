@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Asesor UANL</string>
 
+    <!-- Parse keys-->
     <string name="parse_app_id">4LADG3ddIdsDEX4wwxDZo4mfHfB6eIujedTE1RWP</string>
     <string name="parse_client_key">1vGZgESLbzmj20VQ9KveA32wx8xUXPweKd7F6XHx</string>
-    
-    <string name="hello_world">Hello world!</string>
+
+    <!-- Menu action strings-->
     <string name="action_settings">Configuración</string>
     <string name="action_advance">Advance</string>
     <string name="action_save">Guardar</string>
@@ -12,47 +13,58 @@
     <string name="action_logout">Cerrar sesión</string>
     <string name="action_send">Enviar</string>
 
+    <!-- Layout names -->
     <string name="buscar_asesor">Buscar asesoría</string>
     <string name="asesor_register">Registrarse como asesor</string>
-    <string name="register">Registrarse</string>
-    <string name="login">Iniciar sesión</string>
-    <string name="signup">Registro</string>
+    <string name="register">Registro</string>
     <string name="personalInfo">Datos personales</string>
     <string name="profile">Perfil</string>
     <string name="addAsesory">Agregar asesoría</string>
+    <string name="fullAsesoryList">Lista de asesorías</string>
     <string name="searchAsesory">Buscar asesoría</string>
     <string name="sendEmail">Enviar correo</string>
     <string name="deleteAsesory">Eliminar asesoría</string>
+    <string name="myAsesories">Mis asesorías</string>
+
+    <!-- Signup and login strings-->
+    <string name="login">Iniciar sesión</string>
+    <string name="signup">Registrarse</string>
+    <string name="username">Número de empleado o matrícula</string>
+    <string name="password">Contraseña</string>
+    <string name="conf_password">Confirmar contraseña</string>
+    <string name="password_different">Contraseña diferente. Vuelva a intentar.</string>
+    <string name="password_forgotten">Olvidaste tu contraseña?</string>
+    <string name="change_password">Cambiar contraseña</string>
+    <string name="fill_formas">Alguno de los campos esta vacio.</string>
+
+    <!-- Delete consultancy dialog in myconsultancy.xml-->
     <string name="sureToDelete">Estás seguro que deseas eliminar la asesoría de</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
     <string name="summaryDeleted">Asesoría eliminada</string>
 
-    <string name="username">Número de empleado o matrícula</string>
-    <string name="email">Correo electrónico</string>
-    <string name="password">Contraseña</string>
-    <string name="conf_password">Confirmar contraseña</string>
-    <string name="password_different">Contraseña diferente. Vuelva a intentar.</string>
-    <string name="password_forgotten">Olvidaste tu contraseña?</string>
-    <string name="change_password">Contraseña</string>
-    <string name="fill_formas">Alguno de los campos esta vacio.</string>
-
+    <!-- Personal information strings-->
     <string name="fullname">Nombre completo</string>
+    <string name="email">Correo electrónico</string>
     <string name="department">Coordinación</string>
 
+    <!-- Email message -->
     <string name="email_gretting">Estimado(a): </string>
     <string name="email_beforeName">El alumno [Escribe aquí tu nombre] esta solicitando una asesoría de la materia </string>
 
+    <!-- Settings strings by section -->
     <string name="profile_general_section">Configuración de la cuenta</string>
     <string name="profile_settings">Perfil</string>
     <string name="profile_more_information">Más información</string>
     <string name="profile_actions">Cuenta</string>
 
+    <!-- More informatión section strings -->
     <string name="settings_support">Soporte</string>
     <string name="settings_privacyPolicy">Política de privacidad</string>
     <string name="settings_terms">Términos de servicio</string>
     <string name="settings_license">Licencia</string>
 
+    <!-- Profile settings strings-->
     <string name="profile_settings_resume">Así es como aparecen tus datos personales en Asesor UANL, por favor, proporciona los datos correctos.</string>
     <string name="name">Nombre</string>
     <string name="user">Usuario</string>
@@ -61,6 +73,11 @@
     <string name="noVerified">No verificado</string>
     <string name="dependency">Dependencia</string>
 
+    <!-- Reset password strings in password settings-->
+    <string name="reset_password_message">Para reestablecer una nueva contraseña, por favor llena los siguientes espacios.</string>
+    <string name="reset_password">Se enviará un correo para restablecer tu contraseña. Estás seguro que deseas cambiar tu contraseña?</string>
+
+    <!-- Classes full list -->
     <string-array name="classes">
         <item>Matemáticas I</item>
         <item>Matemáticas II</item>

@@ -50,6 +50,7 @@ public class SearchConsultancy extends AppCompatActivity{
         tv_message = (TextView) findViewById(R.id.tv_searchconsultancy_message);
 
         fullConsultancyList = new ArrayList<>();
+
         AddConsultancy();
     }
 
@@ -81,6 +82,7 @@ public class SearchConsultancy extends AppCompatActivity{
 
                     fullConsultanciesAdapter = new FullConsultanciesAdapter(
                             getApplicationContext(), fullConsultancyList);
+                    fullConsultanciesAdapter.notifyDataSetChanged();
                     consultancyList.setAdapter(fullConsultanciesAdapter);
                 }
             }

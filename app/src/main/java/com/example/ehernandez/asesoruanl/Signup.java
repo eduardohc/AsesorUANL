@@ -37,11 +37,11 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.signup);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        TextView tv_toolbar = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        //TextView tv_toolbar = (TextView) toolbar.findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        tv_toolbar.setText("" + getResources().getString(R.string.signup));
+        //tv_toolbar.setText("" + getResources().getString(R.string.signup));
 
         chb_asesor = (CheckBox) findViewById(R.id.chb_asesor);
         chb_alumno = (CheckBox) findViewById(R.id.chb_alumno);

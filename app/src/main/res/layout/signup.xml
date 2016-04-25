@@ -4,11 +4,16 @@
 
     <include layout="@layout/toolbar"/>
 
+    <TextView
+        style="@style/RegisterTV"
+        android:layout_marginTop="40dp"
+        android:text="@string/signup"
+        android:id="@+id/tv_register_title" />
+
     <RadioGroup
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:weightSum="1">
 
         <CheckBox
@@ -60,8 +65,8 @@
         android:id="@+id/tv_signup_message"/>
 
     <Button
-        style="@style/GeneralButton"
-        android:text="@string/register"
+        style="@style/GeneralButton.Register"
+        android:text="@string/signup"
         android:id="@+id/btn_signup_register" />
 
 </LinearLayout>

@@ -4,8 +4,14 @@
 
     <include layout="@layout/toolbar"/>
 
+    <TextView
+        style="@style/RegisterTV"
+        android:layout_marginTop="40dp"
+        android:text="@string/login"
+        android:id="@+id/tv_register_title" />
+
     <EditText
-        style="@style/GeneralEditText.First"
+        style="@style/GeneralEditText"
         android:inputType="numberDecimal"
         android:hint="@string/username"
         android:id="@+id/et_login_username" />
@@ -22,7 +28,7 @@
         android:id="@+id/tv_login_error"/>
 
     <Button
-        style="@style/GeneralButton"
+        style="@style/GeneralButton.Register"
         android:text="@string/login"
         android:id="@+id/btn_login_login" />
 

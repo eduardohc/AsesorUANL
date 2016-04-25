@@ -1,7 +1,9 @@
 package com.example.ehernandez.asesoruanl;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -61,6 +63,11 @@ public class EditConsultancy extends AppCompatActivity {
         String [] allClasses = getResources().getStringArray(R.array.classes);
         ArrayAdapter<String> classes = new ArrayAdapter<>(
                 this, android.R.layout.simple_list_item_1, allClasses);
+
+        /*TextView tv_resume = (TextView) findViewById(R.id.tv_editasesor_resume);
+        Typeface typeface_title = Typeface.createFromAsset(
+                getAssets(), "fonts/Montserrat-Light.otf");
+        tv_resume.setTypeface(typeface_title);*/
 
         editSummary = (AutoCompleteTextView) findViewById(R.id.et_editasesor_class);
         editSummary.setAdapter(classes);
@@ -147,13 +154,13 @@ public class EditConsultancy extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        //super.onPrepareOptionsMenu(menu);
+
         if(isModified){
             btn_save.setVisible(true);
         } else{
             btn_save.setVisible(false);
         }
-        //super.onPrepareOptionsMenu(menu);
+
         return true;
     }
 
@@ -163,12 +170,12 @@ public class EditConsultancy extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        boolean isVerified;
-        //isVerified = verifiedClass();
-        //noinspection SimplifiableIfStatement
-        if (id == android.R.id.home){
-            finish();
 
+
+        if (id == android.R.id.home){
+            //Intent intent = new Intent();
+            setResult(Activity.RESULT_CANCELED);
+            finish();
 
             overridePendingTransition(
                     R.anim.left_to_right_in, R.anim.left_to_right_out);
@@ -180,20 +187,10 @@ public class EditConsultancy extends AppCompatActivity {
 
             final ParseQuery<ParseObject> object = ParseQuery.getQuery("Materia");
             object.whereEqualTo("objectId", objectId);
-            /*object.findInBackground(new FindCallback<ParseObject>() {
-                @Override
-                public void done(List<ParseObject> objects, ParseException e) {
-                    if(e != null){
-
-                    }
-                }
-            });*/
             object.getInBackground(objectId, new GetCallback<ParseObject>() {
                 @Override
                 public void done(ParseObject object, ParseException e) {
                     if (e == null) {
-
-
                         String newSummary, newHour;
 
                         newSummary = editSummary.getText().toString();
@@ -215,19 +212,12 @@ public class EditConsultancy extends AppCompatActivity {
                 }
             });
 
+            setResult(Activity.RESULT_OK);
             finish();
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-    /*public boolean verifiedClass(){
-        if(et_class.length() > 0){
-            return true;
-        }else{
-            return false;
-        }
-    }*/
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {

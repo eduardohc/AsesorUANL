@@ -15,9 +15,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+
+import java.util.List;
 
 /**
  * Created by Eduardo on 14/04/2016.
@@ -81,7 +87,13 @@ public class ProfileSettings extends AppCompatActivity {
             Log.d("Verified", "" + isVerified);
         }
 
-        et_department.setText("" + user.get("Deparment"));
+        String department;
+        department = "" + user.get("Department");
+        if(department.equals("null") || department.equals("")){
+            et_department.setHint("Escriba aquí el departamento o coordinación");
+        }else{
+            et_department.setText("" + user.get("Department"));
+        }
 
         et_dependency.setText("" + user.get("Dependencia"));
 
@@ -141,6 +153,7 @@ public class ProfileSettings extends AppCompatActivity {
 
         et_department.addTextChangedListener(new TextWatcher() {
             String department = et_department.getText().toString();
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -148,10 +161,10 @@ public class ProfileSettings extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.equals(department)){//et_name.getText().toString().equals(name)){
+                if (s.equals(department)) {//et_name.getText().toString().equals(name)){
                     isModified = false;
                     invalidateOptionsMenu();
-                }else{
+                } else {
                     isModified = true;
                     invalidateOptionsMenu();
                 }
@@ -163,7 +176,7 @@ public class ProfileSettings extends AppCompatActivity {
             }
         });
 
-        et_dependency.addTextChangedListener(new TextWatcher() {
+        /*et_dependency.addTextChangedListener(new TextWatcher() {
             String dependency = et_dependency.getText().toString();
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -185,7 +198,7 @@ public class ProfileSettings extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
             }
-        });
+        });*/
 
     }
 
@@ -217,7 +230,7 @@ public class ProfileSettings extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        String name, email, deparment, dependency;
+        String name, email, deparment, dependency, username;
 
         //noinspection SimplifiableIfStatement
         if (id == android.R.id.home) {
@@ -230,15 +243,18 @@ public class ProfileSettings extends AppCompatActivity {
         }
 
         if(id == R.id.action_save){
+
             name = et_name.getText().toString();
             email = et_email.getText().toString();
             deparment = et_department.getText().toString();
-            dependency = et_dependency.getText().toString();
+            //dependency = et_dependency.getText().toString();
 
+            username = user.getUsername();
+            Log.d("USername", username);
             user.put("Name", name);
             user.put("email", email);
-            user.put("Deparment", deparment);
-            user.put("Dependencia", dependency);
+            user.put("Department", deparment);
+            //user.put("Dependencia", dependency);
             user.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
@@ -253,12 +269,41 @@ public class ProfileSettings extends AppCompatActivity {
                 }
             });
 
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Materia");
+            query.whereEqualTo("Usuario", username);
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> objects, ParseException e) {
+                    if (e == null) {
+                        for (int i = 0; i < objects.size(); i++) {
+                            String objectId = objects.get(i).getObjectId();
+                            changeNameInParse(objectId);
+                        }
+                    }
+                }
+            });
+
             finish();
             overridePendingTransition(
                     R.anim.left_to_right_in, R.anim.left_to_right_out);
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void changeNameInParse(String objectId){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Materia");
+        query.whereEqualTo("objectId", objectId);
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                String newName = et_name.getText().toString();
+                if(e == null && !object.get("Nombre").equals(newName)){
+                    object.put("Nombre", newName);
+                    object.saveInBackground();
+                }
+            }
+        });
     }
 
     @Override

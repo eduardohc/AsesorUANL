@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:layout_marginRight="15dp"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="19sp"
         android:id="@+id/toolbar_title"/>
 
 </android.support.v7.widget.Toolbar>

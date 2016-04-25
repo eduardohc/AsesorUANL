@@ -104,7 +104,6 @@ public class PersonalInformationStudent extends AppCompatActivity{
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_advance && isVerified) {
             ParseUser user = ParseUser.getCurrentUser();
-            ParseObject object = new ParseObject("Alumno");
             user.setEmail(email);
             user.put("Name", name);
             user.put("Dependencia", "FIME");
@@ -112,9 +111,26 @@ public class PersonalInformationStudent extends AppCompatActivity{
                 @Override
                 public void done(ParseException e) {
                     if (e == null) {
-                        emailDifferent = true;
+                        tv_message.setVisibility(View.VISIBLE);
+                        tv_message.setText("Tu información fue guardada exitosamente");
+                        tv_message.setTextColor(getResources().getColor(R.color.appColor));
+
+                        Thread timer = new Thread() {
+                            @Override
+                            public void run() {
+                                try {
+                                    sleep(1500);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                } finally {
+                                    CallAddAsesoryActivity();
+                                    finish();
+                                }
+                            }
+                        };
+                        timer.start();
                     } else {
-                        emailDifferent = false;
+
                         String message;
                         message = e.getMessage();
                         if (message.equals("the email address " + email + " has already been taken")) {
@@ -127,38 +143,6 @@ public class PersonalInformationStudent extends AppCompatActivity{
                     }
                 }
             });
-
-            if(emailDifferent){
-                object.put("Name", name);
-                object.put("Email", email);
-                object.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        if (e == null && emailDifferent) {
-                            tv_message.setVisibility(View.VISIBLE);
-                            tv_message.setText("Tu información fue guardada exitosamente");
-                            tv_message.setTextColor(getResources().getColor(R.color.appColor));
-
-                            Thread timer = new Thread() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        sleep(1500);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    } finally {
-                                        CallAddAsesoryActivity();
-                                        finish();
-                                    }
-                                }
-                            };
-                            timer.start();
-
-                        }
-                    }
-
-                });
-            }
         }
 
         return super.onOptionsItemSelected(item);
@@ -168,10 +152,52 @@ public class PersonalInformationStudent extends AppCompatActivity{
 
         name = et_name.getText().toString();
         email = et_email.getText().toString();
+        tv_message.setVisibility(View.INVISIBLE);
 
         if(name.length() <= 0 || email.length() <= 0){
-            tv_message.setText("Llena todos los datos personales.");
-            tv_message.setVisibility(View.VISIBLE);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } finally {
+                        tv_message.setText("Llena todos los datos personales.");
+                        tv_message.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+            return false;
+        }else if(name.length() <= 7){
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } finally {
+                        tv_message.setText("Escriba el nombre completo");
+                        tv_message.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+            return false;
+        }else if(email.length() <= 9){
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } finally {
+                        tv_message.setText("Escribe tu correo electrónico real");
+                        tv_message.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
 
             return false;
         }else{

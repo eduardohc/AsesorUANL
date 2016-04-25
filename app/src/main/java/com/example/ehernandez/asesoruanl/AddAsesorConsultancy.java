@@ -55,7 +55,7 @@ public class AddAsesorConsultancy extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        tv_toolbar.setText("Agregar");//" + getResources().getString(R.string.addAsesory));
+        tv_toolbar.setText("" + getResources().getString(R.string.addAsesory));
 
         et_class = (AutoCompleteTextView) findViewById(R.id.et_addasesor_class);
         et_class.setAdapter(classes);

@@ -39,11 +39,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.login);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        TextView tv_toolbar = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        //TextView tv_toolbar = (TextView) toolbar.findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        tv_toolbar.setText("" + getResources().getString(R.string.login));
+        //tv_toolbar.setText("" + getResources().getString(R.string.login));
 
         et_username = (EditText) findViewById(R.id.et_login_username);
         et_password = (EditText) findViewById(R.id.et_login_password);
@@ -60,12 +60,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 tv_message.setVisibility(View.INVISIBLE);
-                /*username = s.toString();
-                if(s.length() != username.length()) {
-                    tv_message.setVisibility(View.INVISIBLE);
-                }else{
-                    tv_message.setVisibility(View.VISIBLE);
-                }*/
             }
 
             @Override
@@ -85,12 +79,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 tv_message.setVisibility(View.INVISIBLE);
-                /*password = s.toString();
-                if(s.length() != password.length()) {
-                    tv_message.setVisibility(View.INVISIBLE);
-                }else{
-                    tv_message.setVisibility(View.VISIBLE);
-                }*/
             }
 
             @Override
@@ -111,13 +99,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         if(v.getId() == R.id.btn_login_login){
             Login();
-            //Toast.makeText(getApplication(), "Iniciando sesión...", Toast.LENGTH_LONG).show();
         }
-
-        /*if(v.getId() == R.id.tv_login_recoverPassword){
-            RecoverPassword();
-            //Toast.makeText(getApplicationContext(), "Changing password", Toast.LENGTH_LONG).show();
-        }*/
     }
 
     public void Login(){
@@ -194,10 +176,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                         public void done(ParseException e) {
                             if (e == null) {
 
-                                /*tv_message_recover.setVisibility(View.VISIBLE);
-                                tv_message_recover.setText("Se ha enviado el correo.");
-                                tv_message_recover.setTextColor(getResources().getColor(R.color.green));*/
-
                                 Toast.makeText(getApplicationContext(), "Se ha enviado el correo.",
                                         Toast.LENGTH_SHORT).show();
 
@@ -219,9 +197,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                 message = e.getMessage();
                                 Toast.makeText(getApplicationContext(), "" + message,
                                         Toast.LENGTH_SHORT).show();
-                                /*tv_message_recover.setVisibility(View.VISIBLE);
-                                tv_message_recover.setText("" + message);
-                                tv_message_recover.setTextColor(getResources().getColor(R.color.red));*/
                             }
                         }
                     });

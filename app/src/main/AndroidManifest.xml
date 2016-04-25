@@ -14,44 +14,61 @@
         android:theme="@style/Base.AppTheme.NoActionBar">
 
         <activity
-            android:name=".OverviewActivity">
+            android:name=".OverviewActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".Register"/>
+        <activity android:name=".Register"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".Login"/>
+        <activity android:name=".Login"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".Signup"/>
+        <activity android:name=".Signup"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".PersonalInformationAsesor"/>
+        <activity android:name=".PersonalInformationAsesor"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".MyConsultancies"/>
+        <activity android:name=".MyConsultancies"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".SearchByConsultancy"/>
+        <activity android:name=".SearchByConsultancy"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".SearchConsultancy"/>
+        <activity android:name=".SearchConsultancy"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".PersonalInformationStudent"/>
+        <activity android:name=".PersonalInformationStudent"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".AddAsesorConsultancy"/>
+        <activity android:name=".AddAsesorConsultancy"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".AddStudentConsultancy"/>
+        <activity android:name=".AddStudentConsultancy"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".EditConsultancy"/>
+        <activity android:name=".EditConsultancy"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".SendEmail"/>
+        <activity android:name=".SendEmail"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".Settings"/>
+        <activity android:name=".Settings"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".ProfileSettings"/>
+        <activity android:name=".ProfileSettings"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".PasswordSettings"/>
+        <activity android:name=".PasswordSettings"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

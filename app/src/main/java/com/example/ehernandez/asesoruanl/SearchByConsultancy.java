@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -18,14 +17,10 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 /**
@@ -50,7 +45,7 @@ public class SearchByConsultancy extends AppCompatActivity{
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        tv_toolbar.setText("" + getResources().getString(R.string.searchAsesory));
+        tv_toolbar.setText("" + getResources().getString(R.string.fullAsesoryList));
 
         tv_message = (TextView) findViewById(R.id.tv_searchbyconsultancy_message);
         consultancies = getResources().getStringArray(R.array.classes);
