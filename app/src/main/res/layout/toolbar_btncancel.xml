@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    android:id="@+id/toolbar_cancel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:titleTextColor="@color/white"
+    android:background="@color/appColor"
+    app:theme="@style/Base.AppTheme"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="2dp"
+        android:textColor="@color/white"
+        android:text="@string/cancel"
+        android:textSize="18sp"
+        android:clickable="true"
+        android:onClick="onClick"
+        android:id="@+id/toolbar_action_cancel"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginRight="15dp"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        android:id="@+id/toolbar_title"/>
+
+</android.support.v7.widget.Toolbar>

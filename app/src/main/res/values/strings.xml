@@ -41,6 +41,7 @@
     <string name="sureToDelete">Estás seguro que deseas eliminar la asesoría de</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
+    <string name="cancel">Cancelar</string>
     <string name="summaryDeleted">Asesoría eliminada</string>
 
     <!-- Personal information strings-->

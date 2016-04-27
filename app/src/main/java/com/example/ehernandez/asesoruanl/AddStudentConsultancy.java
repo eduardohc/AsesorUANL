@@ -1,5 +1,6 @@
 package com.example.ehernandez.asesoruanl;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -11,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -27,7 +29,7 @@ import com.parse.SaveCallback;
 /**
  * Created by ehernandez on 14/03/2016.
  */
-public class AddStudentConsultancy extends AppCompatActivity {
+public class AddStudentConsultancy extends AppCompatActivity implements View.OnClickListener{
 
     NumberPicker hours;
     AutoCompleteTextView et_class;
@@ -49,11 +51,11 @@ public class AddStudentConsultancy extends AppCompatActivity {
         String [] allClasses = getResources().getStringArray(R.array.classes);
         classes = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allClasses);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_cancel);
         TextView tv_toolbar = (TextView) toolbar.findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         tv_toolbar.setText("" + getResources().getString(R.string.addAsesory));
 
         et_class = (AutoCompleteTextView) findViewById(R.id.et_addasesor_class);
@@ -89,6 +91,17 @@ public class AddStudentConsultancy extends AppCompatActivity {
     }
 
     @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.toolbar_action_cancel){
+            setResult(Activity.RESULT_CANCELED);
+            finish();
+
+            overridePendingTransition(
+                    R.anim.left_to_right_in, R.anim.left_to_right_out);
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         super.onCreateOptionsMenu(menu);
@@ -116,18 +129,11 @@ public class AddStudentConsultancy extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
         boolean isVerified;
         isVerified = verifiedClass();
         //noinspection SimplifiableIfStatement
-        if (id == android.R.id.home){
-            finish();
 
-            overridePendingTransition(
-                    R.anim.left_to_right_in, R.anim.left_to_right_out);
-        }
-
-        if(id == R.id.action_save && isVerified){
+        if(item.getItemId() == R.id.action_save && isVerified){
             ParseUser user = ParseUser.getCurrentUser();
             ParseObject addClass = new ParseObject("Materia");
             addClass.put("Usuario", user.getUsername());
@@ -138,6 +144,12 @@ public class AddStudentConsultancy extends AppCompatActivity {
             addClass.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
+                    if (e == null) {
+                        setResult(Activity.RESULT_OK);
+                    } else {
+                        setResult(Activity.RESULT_CANCELED);
+                    }
+
                 }
             });
             finish();

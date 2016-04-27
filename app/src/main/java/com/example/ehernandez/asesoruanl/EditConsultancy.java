@@ -2,8 +2,6 @@ package com.example.ehernandez.asesoruanl;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,28 +10,24 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
 import com.parse.SaveCallback;
-
-import java.util.List;
 
 /**
  * Created by ehernandez on 18/03/2016.
  */
-public class EditConsultancy extends AppCompatActivity {
+public class EditConsultancy extends AppCompatActivity implements View.OnClickListener{
 
     NumberPicker editHours;
     AutoCompleteTextView editSummary;
@@ -53,11 +47,11 @@ public class EditConsultancy extends AppCompatActivity {
 
         overridePendingTransition(R.anim.right_to_left_in, R.anim.right_to_left_out_anim);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_cancel);
         TextView tv_toolbar = (TextView) toolbar.findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         tv_toolbar.setText("Editar asesoría");
 
         String [] allClasses = getResources().getStringArray(R.array.classes);
@@ -143,6 +137,17 @@ public class EditConsultancy extends AppCompatActivity {
     }
 
     @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.toolbar_action_cancel){
+            setResult(Activity.RESULT_CANCELED);
+            finish();
+
+            overridePendingTransition(
+                    R.anim.left_to_right_in, R.anim.left_to_right_out);
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         super.onCreateOptionsMenu(menu);
@@ -171,15 +176,14 @@ public class EditConsultancy extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-
-        if (id == android.R.id.home){
+        /*if (id == android.R.id.home){
             //Intent intent = new Intent();
             setResult(Activity.RESULT_CANCELED);
             finish();
 
             overridePendingTransition(
                     R.anim.left_to_right_in, R.anim.left_to_right_out);
-        }
+        }*/
 
         if(id == R.id.action_save){
 

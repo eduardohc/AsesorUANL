@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':sendgrid-android', ':httpclient-android-4.3.3', ':sendgrid-0.1.2', ':httpclient-4.5.2'

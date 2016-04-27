@@ -249,7 +249,7 @@ public class MyConsultancies extends AppCompatActivity {
             Intent intent = new Intent(MyConsultancies.this, Settings.class);
             startActivity(intent);
         }else if(!hasConsultancy){
-            tv_message.setText("No tienes asesorias que editar.");
+            tv_message.setText("No tienes asesorias que editar. Presiona + para agregar asesoría.");
         }
 
         return super.onOptionsItemSelected(item);
@@ -286,6 +286,11 @@ public class MyConsultancies extends AppCompatActivity {
             mySummaryListAdapter.notifyDataSetChanged();
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.summaryDeleted),
                     Toast.LENGTH_SHORT).show();
+            if(consultancyList.isEmpty()){
+                tv_message.setVisibility(View.VISIBLE);
+                hasConsultancy = false;
+                editConsultancyCanceled();
+            }
         }else {
             tv_message.setVisibility(View.VISIBLE);
             tv_message.setText("No tienes ninguna asesoría registrada. Presiona + para agregar asesoría.");
@@ -296,17 +301,15 @@ public class MyConsultancies extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == 1){
             if(resultCode == Activity.RESULT_CANCELED){
                 Log.d("ActivityResult","RESULT_CANCELED");
                 editConsultancyCanceled();
             }else{
                 Log.d("ActivityResult","RESULT_OK");
                 editConsultancyCanceled();
+                mySummaryListAdapter.notifyDataSetChanged();
             }
-        }
     }
 
     public void editConsultancyCanceled(){
@@ -325,6 +328,7 @@ public class MyConsultancies extends AppCompatActivity {
                 INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         return true;
+        compile 'org.apache.httpcomponents:httpmime:4.3.5'
     }*/
 
     @Override

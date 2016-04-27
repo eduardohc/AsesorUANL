@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/OverviewLayout">
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar_btncancel"/>
 
     <TextView
         android:layout_width="match_parent"
