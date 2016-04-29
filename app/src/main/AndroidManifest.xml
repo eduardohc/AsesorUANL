@@ -69,6 +69,9 @@
 
         <activity android:name=".PasswordSettings"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".SupportSettings"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

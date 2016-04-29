@@ -2,85 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/OverviewLayout">
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar_btncancel"/>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
-        android:textSize="16sp"
-        android:textColor="@color/black"
+        style="@style/TVSendEmailTo"
         android:text="Para: "/>
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:clickable="false"
-        android:enabled="false"
-        android:focusable="false"
-        android:textColor="@color/blackish"
-        android:inputType="textEmailSubject"
-        android:ems="10"
-        android:id="@+id/et_email_asesorEmail"
-        android:layout_gravity="center_vertical" />
+        style="@style/ETEmailContent.NoEditable"
+        android:id="@+id/et_emailasesor" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/TVSendEmailTo"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
-        android:textSize="16sp"
-        android:textColor="@color/black"
         android:text="Asunto: "/>
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:clickable="false"
-        android:enabled="false"
-        android:focusable="false"
-        android:textColor="@color/blackish"
-        android:inputType="textNoSuggestions"
-        android:ems="10"
-        android:id="@+id/et_email_subject"
-        android:layout_gravity="center_vertical" />
+        style="@style/ETEmailContent.NoEditable"
+        android:id="@+id/et_emailsubject" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/TVSendEmailTo"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
-        android:textSize="16sp"
-        android:textColor="@color/black"
         android:text="Mensaje: "/>
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        style="@style/ETEmailContent"
         android:textColor="@color/blackish"
-        android:textSize="15sp"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/et_email_bodyText"
-        android:layout_gravity="center_vertical" />
+        android:textSize="16sp"
+        android:id="@+id/et_emailbodyText"/>
 
 </LinearLayout>

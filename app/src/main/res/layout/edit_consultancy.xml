@@ -13,8 +13,8 @@
         android:text="Cambie los atributos para editar la materia"
         android:textSize="20sp"
         android:textColor="@color/appColor"
-        android:id="@+id/tv_editasesor_resume"
-        android:gravity="center" />
+        android:gravity="center"
+        android:id="@+id/tv_editasesor_resume" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:inputType="textMultiLine"
+        android:inputType="textMultiLine|textCapSentences"
         android:textColor="@color/black"
         android:hint="Materia"
         android:gravity="center"

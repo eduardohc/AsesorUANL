@@ -22,7 +22,7 @@
     <string name="addAsesory">Agregar asesoría</string>
     <string name="fullAsesoryList">Lista de asesorías</string>
     <string name="searchAsesory">Buscar asesoría</string>
-    <string name="sendEmail">Enviar correo</string>
+    <string name="sendEmail">Mensaje nuevo</string>
     <string name="deleteAsesory">Eliminar asesoría</string>
     <string name="myAsesories">Mis asesorías</string>
 
@@ -78,6 +78,15 @@
     <string name="reset_password_message">Para reestablecer una nueva contraseña, por favor llena los siguientes espacios.</string>
     <string name="reset_password">Se enviará un correo para restablecer tu contraseña. Estás seguro que deseas cambiar tu contraseña?</string>
 
+    <!-- Support settings strings-->
+    <string name="support_resume">Ayúdanos a mejorar Asesor UANL mandando tus comentarios.</string>
+    <string name="send_feedback"></string>
+
+    <string-array name="feedbacks">
+        <item>Diseño de aplicación</item>
+        <item>Errores de aplicación</item>
+        <item>Otros comentarios</item>
+    </string-array>
     <!-- Classes full list -->
     <string-array name="classes">
         <item>Matemáticas I</item>

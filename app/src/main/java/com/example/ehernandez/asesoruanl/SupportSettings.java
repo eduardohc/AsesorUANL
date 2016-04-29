@@ -12,25 +12,24 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.parse.ParseUser;
-
 /**
- * Created by Eduardo on 24/03/2016.
+ * Created by ehernandez on 27/04/2016.
  */
-public class SendEmail extends AppCompatActivity implements View.OnClickListener{
+public class SupportSettings extends AppCompatActivity implements View.OnClickListener{
 
-    private EditText body;
-    String recipientText, subjectText;
-    ParseUser user = ParseUser.getCurrentUser();
+    private EditText bodyText;
+    String subject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.send_email);
+        setContentView(R.layout.settings_support);
 
         overridePendingTransition(R.anim.right_to_left_in, R.anim.right_to_left_out_anim);
 
@@ -39,54 +38,22 @@ public class SendEmail extends AppCompatActivity implements View.OnClickListener
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        tv_toolbar.setText("" + getResources().getString(R.string.sendEmail));
+        tv_toolbar.setText("" + getResources().getString(R.string.settings_support));
 
-        EditText recipient = (EditText) findViewById(R.id.et_emailasesor);
-        EditText subject = (EditText) findViewById(R.id.et_emailsubject);
-        body = (EditText) findViewById(R.id.et_emailbodyText);
+        Spinner feedbacks = (Spinner) findViewById(R.id.spinner_support_feedbacks);
+        feedbacks.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                subject = parent.getItemAtPosition(position).toString();
+            }
 
-        Bundle extras = getIntent().getExtras();
-        String bodyText, name;
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-        recipientText = "" + extras.get("Email");
-        subjectText = "Solicitud de Asesoría";
+            }
+        });
 
-        name = "" + user.get("Name");
-
-        if(name.equals("null") || name.equals("")){
-            bodyText = "" + getResources().getText(R.string.email_gretting) + " " + extras.get("Name")
-                    + "\n\n" + getResources().getText(R.string.email_beforeName) + " " +
-                    extras.get("Summary") + " de " + extras.get("Hour") + ".";
-        }else{
-            bodyText = "" + getResources().getText(R.string.email_gretting) + " " + extras.get("Name")
-                    + "\n\n" + "El alumno " + user.get("Name") + " esta solicitando una asesoría de la materia " +
-                    extras.get("Summary") + " de " + extras.get("Hour") + ".";
-        }
-
-
-        recipient.setText("Asesor");
-        subject.setText(subjectText);
-        body.setText(bodyText);
-
-    }
-
-    protected void sendEmail(){
-
-        Intent email = new Intent(Intent.ACTION_SEND, Uri.parse("mailto:"));
-        email.setType("text/plain");
-        email.putExtra(Intent.EXTRA_EMAIL, new String[] {recipientText});
-        email.putExtra(Intent.EXTRA_SUBJECT, subjectText);
-        email.putExtra(Intent.EXTRA_TEXT, body.getText().toString());
-
-        try {
-            // the user can choose the email client
-            startActivity(Intent.createChooser(email, "Choose an email client from..."));
-            finish();
-
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(SendEmail.this, "No email client installed.",
-                    Toast.LENGTH_LONG).show();
-        }
+        bodyText = (EditText) findViewById(R.id.et_support_bodyText);
     }
 
     @Override
@@ -97,6 +64,30 @@ public class SendEmail extends AppCompatActivity implements View.OnClickListener
 
             overridePendingTransition(
                     R.anim.left_to_right_in, R.anim.left_to_right_out);
+        }
+    }
+
+    public void sendEmail(){
+
+        String body, recipient;
+
+        recipient = "soporteasesoruanl@gmail.com";
+        body = bodyText.getText().toString();
+
+        Intent email = new Intent(Intent.ACTION_SEND, Uri.parse("mailto:"));
+        email.setType("text/plain");
+        email.putExtra(Intent.EXTRA_EMAIL, new String[] {recipient});
+        email.putExtra(Intent.EXTRA_SUBJECT, subject);
+        email.putExtra(Intent.EXTRA_TEXT, body);
+
+        try {
+            // the user can choose the email client
+            startActivity(Intent.createChooser(email, "Choose an email client from..."));
+            finish();
+
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(SupportSettings.this, "No email client installed.",
+                    Toast.LENGTH_LONG).show();
         }
     }
 
@@ -131,10 +122,4 @@ public class SendEmail extends AppCompatActivity implements View.OnClickListener
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         return true;
     }
-
-    /*@Override
-    public void onBackPressed() {
-        //super.onBackPressed();
-
-    }*/
 }

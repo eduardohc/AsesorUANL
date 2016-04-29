@@ -44,8 +44,8 @@ public class Settings extends AppCompatActivity implements View.OnClickListener{
                 startActivity(intent);
                 break;
             case R.id.layout_settings_support:
-                Toast.makeText(getApplicationContext(), "Click on Support",
-                        Toast.LENGTH_SHORT).show();
+                intent = new Intent(Settings.this, SupportSettings.class);
+                startActivity(intent);
                 break;
             case R.id.layout_settings_privacyPolicy:
                 Toast.makeText(getApplicationContext(), "Click on Privacy Policy",

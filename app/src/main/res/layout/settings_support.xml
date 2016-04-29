@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/OverviewLayout">
+
+    <include layout="@layout/toolbar_btncancel"/>
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textSize="20sp"
+        android:textColor="@color/appColor"
+        android:gravity="center"
+        android:text="@string/support_resume"/>
+
+    <TextView
+        style="@style/TVSendEmailTo"
+        android:text="Para: "/>
+
+    <EditText
+        style="@style/ETEmailContent.NoEditable"
+        android:text="Asesor UANL"
+        android:id="@+id/et_support_asesor" />
+
+    <TextView
+        style="@style/TVSendEmailTo"
+        android:layout_marginTop="20dp"
+        android:text="Asunto: "/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginBottom="5dp"
+        android:padding="3dp"
+        android:entries="@array/feedbacks"
+        android:id="@+id/spinner_support_feedbacks"/>
+
+    <TextView
+        style="@style/TVSendEmailTo"
+        android:layout_marginTop="20dp"
+        android:text="Mensaje: "/>
+
+    <EditText
+        style="@style/ETEmailContent"
+        android:hint="Escribe aquí tus comentarios"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textColor="@color/blackish"
+        android:textSize="16sp"
+        android:id="@+id/et_support_bodyText"/>
+
+</LinearLayout>
